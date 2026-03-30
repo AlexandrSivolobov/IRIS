@@ -1,34 +1,146 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Custom animations and styles for Ирис Design */
+
+/* Marquee */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Slideshow zoom effect */
+.slide-zoom {
+  animation: slideZoom 6s ease-out forwards;
 }
 
-.App-link {
-    color: #61dafb;
+@keyframes slideZoom {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Service card hover */
+.service-card {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+}
+
+.service-card:hover {
+  transform: rotate(0deg) translateY(-4px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* CTA button arrow animation */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(190, 31, 51, 0.3);
+}
+
+.cta-btn .arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Parallax image wrapper */
+.parallax-img {
+  will-change: transform;
+}
+
+/* Torn paper clip path */
+.torn-paper {
+  clip-path: polygon(
+    0% 0%, 5% 3%, 10% 0%, 15% 2%, 20% 0%, 25% 3%, 30% 1%, 35% 4%, 40% 0%, 45% 2%, 
+    50% 0%, 55% 3%, 60% 1%, 65% 4%, 70% 0%, 75% 2%, 80% 0%, 85% 3%, 90% 1%, 95% 3%, 
+    100% 0%, 100% 100%, 0% 100%
+  );
+}
+
+/* Decorative square */
+.deco-square {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--iris-teal);
+  display: inline-block;
+  margin: 0 6px;
+}
+
+/* FAQ plus icon rotation */
+.faq-icon {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.faq-icon.open {
+  transform: rotate(45deg);
+}
+
+/* FAQ item line */
+.faq-item {
+  border-bottom: 1px solid #be1f33;
+  transition: background-color 0.3s ease;
+}
+
+.faq-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Handwriting animation */
+.handwriting-animate {
+  background: linear-gradient(90deg, #ffffff 50%, transparent 50%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: handwriteReveal 2s ease-out forwards;
+}
+
+@keyframes handwriteReveal {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2f8791;
+  border-radius: 3px;
+}
+
+/* Polaroid photo */
+.polaroid {
+  background: white;
+  padding: 12px 12px 48px 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: rotate(-3deg);
+  transition: transform 0.4s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Sticker badge */
+.sticker-badge {
+  animation: wobble 3s ease-in-out infinite;
+}
+
+/* Mobile menu */
+.mobile-menu-overlay {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
