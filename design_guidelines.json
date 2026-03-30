@@ -1,0 +1,117 @@
+{
+  "theme": "hybrid",
+  "archetype": "Archetype 1 (Organic & Earthy) blended with high-contrast architectural styling",
+  "colors": {
+    "primary": "#be1f33",
+    "primary_hover": "#a01828",
+    "background_light": "#ffffff",
+    "background_warm": "#fcfaf8",
+    "background_dark": "#0a0a0a",
+    "background_green": "#3d6f56",
+    "accent_teal": "#2f8791",
+    "accent_light_teal": "#9ed5dc",
+    "text_dark": "#1a1a1a",
+    "text_light": "#ffffff",
+    "border_light": "rgba(255, 255, 255, 0.2)",
+    "border_dark": "rgba(0, 0, 0, 0.1)"
+  },
+  "typography": {
+    "heading_font": "Outfit, sans-serif",
+    "body_font": "Manrope, sans-serif",
+    "handwriting_font": "Caveat, cursive",
+    "scale": {
+      "h1": "text-5xl md:text-7xl lg:text-8xl tracking-tighter font-medium",
+      "h2": "text-4xl md:text-5xl tracking-tight font-medium",
+      "h3": "text-2xl md:text-3xl font-medium",
+      "handwriting_large": "text-5xl md:text-7xl font-handwriting",
+      "handwriting_medium": "text-3xl md:text-4xl font-handwriting",
+      "body": "text-base md:text-lg leading-relaxed"
+    }
+  },
+  "spacing_and_layout": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section": "py-24 md:py-32 overflow-hidden",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#be1f33] text-white px-8 py-4 rounded-none hover:-translate-y-1 transition-transform duration-300 font-medium tracking-wide",
+      "outline_light": "border border-white text-white px-8 py-4 rounded-none hover:bg-white hover:text-[#0a0a0a] transition-all duration-300",
+      "outline_dark": "border border-[#1a1a1a] text-[#1a1a1a] px-8 py-4 rounded-none hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
+    },
+    "cards": {
+      "service": "bg-white p-8 md:p-12 border border-dashed border-[#2f8791]/50 flex flex-col items-start gap-6 hover:border-[#2f8791] transition-colors"
+    },
+    "badges": {
+      "sticker": "absolute w-32 h-32 bg-[#9ed5dc] rounded-full flex items-center justify-center text-[#1a1a1a] text-sm font-bold text-center p-4 transform rotate-12 shadow-lg",
+      "stamp": "w-40 h-40 border border-[#9ed5dc] text-[#9ed5dc] rounded-full flex items-center justify-center text-sm tracking-[0.2em] uppercase"
+    }
+  },
+  "animations": {
+    "hero_slideshow": "Crossfade images every 5 seconds using framer-motion AnimatePresence.",
+    "marquee": "Infinite linear horizontal translation using react-fast-marquee or framer-motion.",
+    "scroll_reveal": "Elements fade in and translate Y upwards by 40px when entering viewport.",
+    "card_rotation": "Service cards start slightly rotated (e.g., -rotate-3, rotate-2, -rotate-1) and straighten on hover.",
+    "parallax": "Use framer-motion useScroll and useTransform to move images at a slower rate than the scroll container.",
+    "accordion": "Plus icon rotates 45 degrees to become an X. Content expands with layout animation.",
+    "wobble": "Continuous slow rotation and slight scale pulsing for the accent sticker."
+  },
+  "sections_instructions": {
+    "Hero": "Relative container taking 100vh. Absolute slideshow covering background with a dark overlay (bg-black/40) for text legibility. Header with hamburger menu at top. Centered huge heading 'Ирис' in sans-serif and 'Design' in calligraphic font directly below or beside. Continuous marquee at bottom. Wobbling sticker positioned at bottom right.",
+    "About": "Warm background (#fcfaf8). Split layout: text left, polaroid right. Polaroid is a white box with large bottom padding, tilted -3deg, drop-shadow-xl. Title 'Место, где дом превращается в историю' in uppercase Outfit. Subtle decorative square svgs in corners.",
+    "Services": "White background. Large calligraphic watermark text 'Больше чем ремонт' behind the cards. Grid of 3 cards (border-dashed). Card titles in Caveat. Primary terracotta CTA buttons (#be1f33).",
+    "Philosophy": "Dark green background (#3d6f56). High-contrast bento grid. Numbered items '01', '02' in large thin font. Green stamp badge 'Сервис 360°' pinned to the top right corner of the section.",
+    "Portfolio": "Dark background (#0a0a0a). Fullscreen images layered with parallax effect. Large handwritten captions overlaying the images in white. Sticky terracotta 'Смотреть проект' button.",
+    "Team": "Image takes full width. Top edge of the image container uses a torn-paper SVG clip-path mask. Overlay div with values list and 'Присоединиться' button.",
+    "Partnership_Reviews": "Warm background. Project masonry layout. Heading 'Станьте частью нашей истории'. Two buttons side by side.",
+    "FAQ": "Black background (#0a0a0a). 'Частые вопросы' heading. Accordion lists. 1px bottom border for items. Plus icon rotation.",
+    "Footer": "Minimal. Warm background. Social links, privacy policy, and partner logos horizontally aligned."
+  },
+  "media": {
+    "hero_slideshow": [
+      {
+        "url": "https://images.unsplash.com/photo-1763647972062-5e9cd48fb282?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHx3YXJtJTIwbW9kZXJuJTIwbHV4dXJ5JTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc3NDg3MTQ4OHww&ixlib=rb-4.1.0&q=85",
+        "description": "Warm modern living room"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1758448511421-debb41f3e621?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHx3YXJtJTIwbW9kZXJuJTIwbHV4dXJ5JTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc3NDg3MTQ4OHww&ixlib=rb-4.1.0&q=85",
+        "description": "Modern dining room"
+      }
+    ],
+    "about_polaroid": [
+      {
+        "url": "https://images.unsplash.com/photo-1767411354923-b22cb2e02ea2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwxfHxmYW1pbHklMjBwb3J0cmFpdCUyMGhvbWV8ZW58MHx8fHwxNzc0ODcxNDk0fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Family sitting on stairs, dressed in white"
+      }
+    ],
+    "portfolio_images": [
+      {
+        "url": "https://images.unsplash.com/photo-1763485956303-c9f7b5277173?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHw0fHx3YXJtJTIwbW9kZXJuJTIwbHV4dXJ5JTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc3NDg3MTQ4OHww&ixlib=rb-4.1.0&q=85",
+        "description": "Modern bathroom wood"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1768144092684-c1a5dd6c7aad?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHx3YXJtJTIwbW9kZXJuJTIwbHV4dXJ5JTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc3NDg3MTQ4OHww&ixlib=rb-4.1.0&q=85",
+        "description": "Modern living room cream sofa"
+      }
+    ],
+    "team_photo": [
+      {
+        "url": "https://images.unsplash.com/photo-1716703742287-2b06c3c6d81a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwcG9ydHJhaXQlMjBvZmZpY2V8ZW58MHx8fHwxNzc0ODcxNTAyfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Group of people sitting next to each other"
+      }
+    ],
+    "partner_logos": [
+      {
+        "url": "https://images.unsplash.com/photo-1763089221979-ebb2a748358a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwzfHxtaW5pbWFsaXN0JTIwYnJhbmQlMjBsb2dvJTIwbW9ja3VwfGVufDB8fHx8MTc3NDg3MTQ4OXww&ixlib=rb-4.1.0&q=85",
+        "description": "Lumix logo"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1518841024803-143c51852c8a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwYnJhbmQlMjBsb2dvJTIwbW9ja3VwfGVufDB8fHx8MTc3NDg3MTQ4OXww&ixlib=rb-4.1.0&q=85",
+        "description": "Reebok logo"
+      }
+    ]
+  },
+  "testing": {
+    "attributes": "Add data-testid to all interactable elements (buttons, accordion toggles, navigation links, forms). E.g., data-testid='hero-cta-button'."
+  }
+}
