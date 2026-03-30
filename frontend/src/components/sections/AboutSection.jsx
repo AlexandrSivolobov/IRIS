@@ -21,9 +21,9 @@ const polaroids = [
 
 /* Fan layout: cards spread from a shared bottom pivot with horizontal offsets */
 const fanConfig = [
-  { angle: -18, xOffset: -120 },  // left
+  { angle: -18, xOffset: -160 },  // left
   { angle: 0, xOffset: 0 },       // center
-  { angle: 18, xOffset: 120 },    // right
+  { angle: 18, xOffset: 160 },    // right
 ];
 
 function PolaroidFan({ inView }) {
@@ -38,7 +38,7 @@ function PolaroidFan({ inView }) {
   }, [inView, hasAppeared]);
 
   return (
-    <div className="relative w-full flex items-end justify-center" style={{ minHeight: 480 }}>
+    <div className="relative w-full flex items-end justify-center" style={{ minHeight: 540 }}>
       {polaroids.map((p, i) => {
         const isActive = activeIdx === i;
         const cfg = fanConfig[i];
@@ -65,10 +65,10 @@ function PolaroidFan({ inView }) {
             whileHover={!isActive ? { y: -12, scale: 0.89 } : {}}
             className="polaroid absolute cursor-pointer select-none"
             style={{
-              width: 260,
+              width: 340,
               left: '50%',
               bottom: 0,
-              marginLeft: -130,
+              marginLeft: -170,
               zIndex: isActive ? 30 : 10,
               transformOrigin: '50% 100%',
               filter: isActive ? 'none' : 'brightness(0.9)',
@@ -145,7 +145,7 @@ export default function AboutSection() {
           </motion.div>
 
           {/* Polaroid fan — click any card to bring it forward */}
-          <div className="lg:col-span-7 relative flex justify-center items-end min-h-[420px] md:min-h-[480px]">
+          <div className="lg:col-span-7 relative flex justify-center items-end min-h-[500px] md:min-h-[560px]">
             <PolaroidFan inView={inView} />
           </div>
         </div>
