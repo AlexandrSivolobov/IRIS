@@ -19,62 +19,59 @@ const polaroids = [
   },
 ];
 
-/* Layout slots for the 3-card stack:
-   slot 0 = front card (big, centered)
-   slot 1 = back-right (smaller, shifted right, behind)
-   slot 2 = back-left  (smaller, shifted left, behind)  */
-const slots = [
-  { x: 0, y: 0, rotate: -2, scale: 1, zIndex: 20, opacity: 1 },
-  { x: '40%', y: 20, rotate: 5, scale: 0.88, zIndex: 10, opacity: 0.85 },
-  { x: '-8%', y: 140, rotate: -4, scale: 0.82, zIndex: 5, opacity: 0.7 },
+/* Fan layout: cards spread from a shared bottom pivot with horizontal offsets */
+const fanConfig = [
+  { angle: -18, xOffset: -120 },  // left
+  { angle: 0, xOffset: 0 },       // center
+  { angle: 18, xOffset: 120 },    // right
 ];
 
-function PolaroidStack({ inView }) {
-  // order[0] = index of card in slot 0 (front), etc.
-  const [order, setOrder] = useState([0, 1, 2]);
+function PolaroidFan({ inView }) {
+  const [activeIdx, setActiveIdx] = useState(1);
   const [hasAppeared, setHasAppeared] = useState(false);
 
   useEffect(() => {
     if (inView && !hasAppeared) {
-      const t = setTimeout(() => setHasAppeared(true), 1200);
+      const t = setTimeout(() => setHasAppeared(true), 1000);
       return () => clearTimeout(t);
     }
   }, [inView, hasAppeared]);
 
   return (
-    <div className="relative w-full h-full" style={{ minHeight: 420 }}>
-      {order.map((cardIdx, slotIdx) => {
-        const p = polaroids[cardIdx];
-        const s = slots[slotIdx];
+    <div className="relative w-full flex items-end justify-center" style={{ minHeight: 480 }}>
+      {polaroids.map((p, i) => {
+        const isActive = activeIdx === i;
+        const cfg = fanConfig[i];
         return (
           <motion.div
-            key={cardIdx}
-            data-testid={`about-polaroid-${cardIdx}`}
-            onClick={slotIdx !== 0 ? () => setOrder(prev => {
-              if (slotIdx === 1) return [prev[1], prev[2], prev[0]];
-              return [prev[2], prev[0], prev[1]];
-            }) : undefined}
-            initial={!hasAppeared ? { opacity: 0, y: 60, rotate: 0, scale: 0.8 } : false}
-            animate={{
-              opacity: s.opacity,
-              x: s.x,
-              y: s.y,
-              rotate: s.rotate,
-              scale: s.scale,
-            }}
+            key={i}
+            data-testid={`about-polaroid-${i}`}
+            onClick={() => setActiveIdx(i)}
+            initial={{ opacity: 0, rotate: 0, x: 0, scale: 0.7 }}
+            animate={hasAppeared ? {
+              opacity: 1,
+              rotate: isActive ? 0 : cfg.angle,
+              x: isActive ? 0 : cfg.xOffset,
+              scale: isActive ? 1.05 : 0.85,
+              y: isActive ? -24 : 0,
+            } : { opacity: 0, rotate: 0, x: 0, scale: 0.7 }}
             transition={{
-              duration: hasAppeared ? 0.7 : 0.6,
-              delay: hasAppeared ? 0 : slotIdx * 0.2 + 0.4,
+              duration: 0.5,
+              delay: hasAppeared ? 0 : i * 0.12,
               type: 'spring',
-              stiffness: 70,
-              damping: 14,
+              stiffness: 100,
+              damping: 16,
             }}
-            whileHover={slotIdx === 0 ? { rotate: 0, scale: 1.04 } : { scale: s.scale + 0.03 }}
-            className="polaroid absolute cursor-pointer"
+            whileHover={!isActive ? { y: -12, scale: 0.89 } : {}}
+            className="polaroid absolute cursor-pointer select-none"
             style={{
-              width: slotIdx === 0 ? '58%' : '46%',
-              zIndex: s.zIndex,
-              transformOrigin: 'center bottom',
+              width: 260,
+              left: '50%',
+              bottom: 0,
+              marginLeft: -130,
+              zIndex: isActive ? 30 : 10,
+              transformOrigin: '50% 100%',
+              filter: isActive ? 'none' : 'brightness(0.9)',
             }}
           >
             <img
@@ -88,25 +85,6 @@ function PolaroidStack({ inView }) {
           </motion.div>
         );
       })}
-
-      {/* Dots indicator */}
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-        {polaroids.map((_, i) => (
-          <button
-            key={i}
-            data-testid={`about-dot-${i}`}
-            onClick={() => {
-              const idx = order.indexOf(i);
-              if (idx === 0) return;
-              if (idx === 1) setOrder([order[1], order[2], order[0]]);
-              else setOrder([order[2], order[0], order[1]]);
-            }}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              order[0] === i ? 'bg-iris-teal w-5' : 'bg-iris-teal/30'
-            }`}
-          />
-        ))}
-      </div>
     </div>
   );
 }
@@ -166,9 +144,9 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          {/* Polaroid carousel — animated card stack */}
-          <div className="lg:col-span-7 relative flex justify-center items-start min-h-[420px] md:min-h-[460px]">
-            <PolaroidStack inView={inView} />
+          {/* Polaroid fan — click any card to bring it forward */}
+          <div className="lg:col-span-7 relative flex justify-center items-end min-h-[420px] md:min-h-[480px]">
+            <PolaroidFan inView={inView} />
           </div>
         </div>
       </div>
