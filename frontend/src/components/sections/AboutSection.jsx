@@ -1,7 +1,29 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const POLAROID_IMG = 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&q=80';
+const polaroids = [
+  {
+    src: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&q=80',
+    alt: 'Счастливая семья',
+    caption: 'Семья Ивановых, 2024',
+    rotate: -3,
+    delay: 0.4,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80',
+    alt: 'Уютная гостиная',
+    caption: 'Проект «Лесной дом»',
+    rotate: 4,
+    delay: 0.6,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80',
+    alt: 'Светлая кухня',
+    caption: 'Проект «Солнечная терраса»',
+    rotate: -2,
+    delay: 0.8,
+  },
+];
 
 export default function AboutSection() {
   const ref = useRef(null);
@@ -39,7 +61,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-7"
+            className="lg:col-span-5"
           >
             <p className="text-base md:text-lg leading-relaxed text-iris-text/80 mb-6">
               Студия <span className="text-iris-red font-semibold">«Ирис»</span> — это команда 
@@ -58,24 +80,35 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          {/* Polaroid */}
-          <motion.div
-            initial={{ opacity: 0, rotate: -8, scale: 0.9 }}
-            animate={inView ? { opacity: 1, rotate: -3, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-5 flex justify-center lg:justify-end"
-          >
-            <div className="polaroid max-w-xs">
-              <img
-                src={POLAROID_IMG}
-                alt="Счастливая семья"
-                className="w-full aspect-[4/3] object-cover"
-              />
-              <p className="font-caveat text-xl text-iris-text/70 text-center mt-4">
-                Семья Ивановых, 2024
-              </p>
-            </div>
-          </motion.div>
+          {/* Polaroid collage — 3 photos */}
+          <div className="lg:col-span-7 relative flex justify-center items-start min-h-[380px] md:min-h-[420px]">
+            {polaroids.map((p, i) => (
+              <motion.div
+                key={i}
+                data-testid={`about-polaroid-${i}`}
+                initial={{ opacity: 0, rotate: p.rotate * 2, scale: 0.85, y: 30 }}
+                animate={inView ? { opacity: 1, rotate: p.rotate, scale: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: p.delay, type: 'spring', stiffness: 90 }}
+                whileHover={{ rotate: 0, scale: 1.06, zIndex: 30 }}
+                className="polaroid absolute cursor-pointer"
+                style={{
+                  width: i === 0 ? '55%' : '45%',
+                  left: i === 0 ? '0%' : i === 1 ? '35%' : '12%',
+                  top: i === 0 ? '0px' : i === 1 ? '20px' : '160px',
+                  zIndex: i === 0 ? 10 : i === 1 ? 20 : 15,
+                }}
+              >
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                <p className="font-caveat text-lg md:text-xl text-iris-text/70 text-center mt-3">
+                  {p.caption}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
