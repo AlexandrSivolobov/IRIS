@@ -93,21 +93,6 @@ export default function HeroSection() {
         </motion.button>
       </div>
 
-      {/* Accent sticker */}
-      <motion.div
-        data-testid="hero-sticker"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1.5, type: 'spring' }}
-        className="sticker-badge absolute bottom-24 right-6 md:bottom-32 md:right-12 w-28 h-28 md:w-32 md:h-32 bg-iris-light-teal rounded-full flex items-center justify-center text-iris-dark text-center p-4 shadow-xl cursor-pointer z-20"
-      >
-        <div>
-          <span className="font-caveat text-lg md:text-xl font-bold leading-tight block">День открытых</span>
-          <span className="font-caveat text-lg md:text-xl font-bold leading-tight block">дверей</span>
-          <span className="font-outfit text-xs mt-1 block tracking-wide">15.01 — 20.01</span>
-        </div>
-      </motion.div>
-
       {/* Bottom marquee */}
       <div className="absolute bottom-0 left-0 w-full py-4 bg-gradient-to-t from-black/60 to-transparent z-10">
         <div className="overflow-hidden">
