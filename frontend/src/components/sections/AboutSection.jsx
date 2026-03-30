@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 const polaroids = [
   {
@@ -35,21 +35,11 @@ function PolaroidStack({ inView }) {
   const [hasAppeared, setHasAppeared] = useState(false);
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !hasAppeared) {
       const t = setTimeout(() => setHasAppeared(true), 1200);
       return () => clearTimeout(t);
     }
-  }, [inView]);
-
-  const cycle = useCallback(() => {
-    setOrder(prev => [prev[1], prev[2], prev[0]]);
-  }, []);
-
-  useEffect(() => {
-    if (!hasAppeared) return;
-    const interval = setInterval(cycle, 3500);
-    return () => clearInterval(interval);
-  }, [hasAppeared, cycle]);
+  }, [inView, hasAppeared]);
 
   return (
     <div className="relative w-full h-full" style={{ minHeight: 420 }}>
@@ -60,7 +50,10 @@ function PolaroidStack({ inView }) {
           <motion.div
             key={cardIdx}
             data-testid={`about-polaroid-${cardIdx}`}
-            onClick={slotIdx !== 0 ? cycle : undefined}
+            onClick={slotIdx !== 0 ? () => setOrder(prev => {
+              if (slotIdx === 1) return [prev[1], prev[2], prev[0]];
+              return [prev[2], prev[0], prev[1]];
+            }) : undefined}
             initial={!hasAppeared ? { opacity: 0, y: 60, rotate: 0, scale: 0.8 } : false}
             animate={{
               opacity: s.opacity,
