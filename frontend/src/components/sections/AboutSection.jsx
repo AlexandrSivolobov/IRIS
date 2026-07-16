@@ -1,92 +1,71 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const polaroids = [
-{
-  src: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&q=80',
-  alt: 'Счастливая семья',
-  caption: 'Семья Ивановых, 2024'
-},
-{
-  src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80',
-  alt: 'Уютная гостиная',
-  caption: 'Проект «Лесной дом»'
-},
-{
-  src: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80',
-  alt: 'Светлая кухня',
-  caption: 'Проект «Солнечная терраса»'
-}];
-
-
-/* Fan layout: cards spread from a shared bottom pivot with horizontal offsets */
-const fanConfig = [
-{ angle: -18, xOffset: -160 }, // left
-{ angle: 0, xOffset: 0 }, // center
-{ angle: 18, xOffset: 160 } // right
+const images = [
+  {
+    src: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=800&q=80',
+    alt: 'Счастливая семья',
+    caption: 'Семья Ивановых, 2024',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',
+    alt: 'Уютная гостиная',
+    caption: 'Проект «Лесной дом»',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+    alt: 'Светлая кухня',
+    caption: 'Проект «Солнечная терраса»',
+  },
 ];
 
-function PolaroidFan({ inView }) {
-  const [activeIdx, setActiveIdx] = useState(1);
-  const [hasAppeared, setHasAppeared] = useState(false);
-
-  useEffect(() => {
-    if (inView && !hasAppeared) {
-      const t = setTimeout(() => setHasAppeared(true), 1000);
-      return () => clearTimeout(t);
-    }
-  }, [inView, hasAppeared]);
+function ExpandingGallery({ inView }) {
+  const [hovered, setHovered] = useState(null);
 
   return (
-    <div className="relative w-full flex items-end justify-center" style={{ minHeight: 540 }}>
-      {polaroids.map((p, i) => {
-        const isActive = activeIdx === i;
-        const cfg = fanConfig[i];
+    <div className="flex h-[420px] md:h-[480px] gap-2 w-full">
+      {images.map((img, i) => {
+        const isHovered = hovered === i;
+        const hasHover = hovered !== null;
         return (
           <motion.div
             key={i}
-            data-testid={`about-polaroid-${i}`}
-            onClick={() => setActiveIdx(i)}
-            initial={{ opacity: 0, rotate: 0, x: 0, scale: 0.7 }}
-            animate={hasAppeared ? {
+            data-testid={`about-image-${i}`}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            initial={{ opacity: 0, flex: 1 }}
+            animate={inView ? {
               opacity: 1,
-              rotate: isActive ? 0 : cfg.angle,
-              x: isActive ? 0 : cfg.xOffset,
-              scale: isActive ? 1.05 : 0.85,
-              y: isActive ? -24 : 0
-            } : { opacity: 0, rotate: 0, x: 0, scale: 0.7 }}
+              flex: isHovered ? 3 : hasHover ? 0.5 : 1,
+            } : { opacity: 0 }}
             transition={{
-              duration: 0.5,
-              delay: hasAppeared ? 0 : i * 0.12,
-              type: 'spring',
-              stiffness: 100,
-              damping: 16
+              opacity: { duration: 0.6, delay: i * 0.15 },
+              flex: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
             }}
-            whileHover={!isActive ? { y: -12, scale: 0.89 } : {}}
-            className="polaroid absolute cursor-pointer select-none"
-            style={{
-              width: 340,
-              left: '50%',
-              bottom: 0,
-              marginLeft: -170,
-              zIndex: isActive ? 30 : 10,
-              transformOrigin: '50% 100%',
-              filter: isActive ? 'none' : 'brightness(0.9)'
-            }}>
-
+            className="relative overflow-hidden cursor-pointer group"
+            style={{ minWidth: 0 }}
+          >
             <img
-              src={p.src}
-              alt={p.alt}
-              className="w-full aspect-[4/3] object-cover !shadow-sm" />
+              src={img.src}
+              alt={img.alt}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
 
-            <p className="font-caveat text-lg md:text-xl text-iris-text/70 text-center mt-3">
-              {p.caption}
-            </p>
-          </motion.div>);
-
+            {/* Caption — visible on hover */}
+            <motion.div
+              initial={false}
+              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
+              transition={{ duration: 0.3 }}
+              className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent"
+            >
+              <p className="font-caveat text-xl text-white">{img.caption}</p>
+            </motion.div>
+          </motion.div>
+        );
       })}
-    </div>);
-
+    </div>
+  );
 }
 
 export default function AboutSection() {
@@ -98,16 +77,16 @@ export default function AboutSection() {
       data-testid="about-section"
       id="about"
       ref={ref}
-      className="py-24 md:py-32 bg-iris-warm overflow-hidden">
-
+      className="py-24 md:py-32 bg-iris-warm overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title with decorative squares */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-16">
-
+          className="mb-16"
+        >
           <div className="flex items-center gap-3 mb-6">
             <span className="deco-square" />
             <span className="deco-square" />
@@ -119,33 +98,33 @@ export default function AboutSection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Text content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5">
-
+            className="lg:col-span-4"
+          >
             <p className="text-base md:text-lg leading-relaxed text-iris-text/80 mb-6">
-              Студия <span className="text-iris-red font-semibold">«Ирис»</span> — это команда 
-              архитекторов и дизайнеров, для которых каждый проект — не просто набор квадратных метров, 
-              а уникальная <span className="text-iris-teal font-semibold">история</span>, рассказанная 
+              Студия <span className="text-iris-red font-semibold">«Ирис»</span> — это команда
+              архитекторов и дизайнеров, для которых каждый проект — не просто набор квадратных метров,
+              а уникальная <span className="text-iris-teal font-semibold">история</span>, рассказанная
               через свет, фактуры и пространство.
             </p>
-            <p className="text-base md:text-lg leading-relaxed text-iris-text/80 mb-6">
+            <p className="text-base md:text-lg leading-relaxed text-iris-text/80">
               Мы верим, что интерьер должен не только выглядеть красиво, но и{' '}
-              <span className="text-iris-green font-semibold">чувствоваться</span> правильно. 
+              <span className="text-iris-green font-semibold">чувствоваться</span> правильно.
               Каждая деталь продумана: от текстуры дерева до направления солнечного света.
             </p>
           </motion.div>
 
-          {/* Polaroid fan — click any card to bring it forward */}
-          <div className="lg:col-span-7 relative flex justify-center items-end min-h-[500px] md:min-h-[560px]">
-            <PolaroidFan inView={inView} />
+          {/* 3-column expanding gallery */}
+          <div className="lg:col-span-8">
+            <ExpandingGallery inView={inView} />
           </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }
