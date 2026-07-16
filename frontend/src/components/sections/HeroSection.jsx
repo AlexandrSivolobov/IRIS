@@ -63,7 +63,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.3 }}
           className="text-center"
         >
-          <h1 className="font-outfit font-medium text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.15em] leading-none">
+          <h1 className="text-white text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] tracking-[0.12em] leading-none uppercase" style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 400 }}>
             Ирис
           </h1>
           <span className="font-caveat text-iris-light-teal text-5xl sm:text-6xl md:text-7xl lg:text-8xl block mt-2">
