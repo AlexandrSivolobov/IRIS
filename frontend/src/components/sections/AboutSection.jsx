@@ -138,10 +138,6 @@ export default function AboutSection() {
               <span className="text-iris-green font-semibold">чувствоваться</span> правильно. 
               Каждая деталь продумана: от текстуры дерева до направления солнечного света.
             </p>
-            <p className="text-base md:text-lg leading-relaxed text-iris-text/80">
-              За 8 лет мы реализовали более <span className="text-iris-red font-semibold">150 проектов</span>, 
-              каждый из которых стал отражением характера и мечты его владельцев.
-            </p>
           </motion.div>
 
           {/* Polaroid fan — click any card to bring it forward */}

@@ -264,15 +264,6 @@ function ServiceCard({ service, index, inView, onOpenCost }) {
           <div className="w-full border-t-2 border-dashed border-iris-teal/20 my-6" />
 
           <p className="font-manrope text-sm md:text-base text-iris-text/70 leading-relaxed mb-8">{service.description}</p>
-
-          <button
-            data-testid={`service-cta-${service.id}`}
-            onClick={() => onOpenCost(service)}
-            className="cta-btn w-full bg-iris-red text-white py-4 font-outfit text-sm tracking-[0.2em] uppercase flex items-center justify-center gap-3 hover:bg-iris-red-hover transition-all duration-300"
-          >
-            Узнать стоимость
-            <ArrowRight size={16} className="arrow-icon" />
-          </button>
         </div>
       </div>
     </motion.div>
