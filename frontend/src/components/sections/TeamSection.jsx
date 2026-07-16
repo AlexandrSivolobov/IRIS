@@ -1,7 +1,9 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight, BookOpen, Clock, Award, Users } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { ArrowRight, BookOpen, Clock, Award, Users, X, CheckCircle } from 'lucide-react';
+import axios from 'axios';
 
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const TEAM_IMG = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80';
 
 const benefits = [

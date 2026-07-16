@@ -195,17 +195,6 @@ function PortfolioItem({ project, index, onOpen }) {
           </button>
         </motion.div>
       </div>
-
-      {index === 0 && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 0.6, type: 'spring' }}
-          className="sticker-badge absolute top-8 right-8 w-24 h-24 bg-iris-red rounded-full flex items-center justify-center text-white shadow-lg z-20"
-        >
-          <span className="font-caveat text-base font-bold text-center leading-tight">Награда года</span>
-        </motion.div>
-      )}
     </motion.div>
   );
 }

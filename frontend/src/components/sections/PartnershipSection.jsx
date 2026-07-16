@@ -195,11 +195,6 @@ export default function PartnershipSection() {
               <motion.div key={i} data-testid={`partner-project-${i}`} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 * i }} className="relative group overflow-hidden aspect-[4/3]">
                 <img src={project.img} alt={`Проект ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
-                {project.label && (
-                  <div className="sticker-badge absolute top-4 right-4 w-20 h-20 bg-iris-red rounded-full flex items-center justify-center text-white shadow-lg z-10">
-                    <span className="font-caveat text-sm font-bold text-center leading-tight">{project.label}</span>
-                  </div>
-                )}
               </motion.div>
             ))}
           </div>
