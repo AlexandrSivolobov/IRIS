@@ -34,7 +34,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
         className="w-full flex items-center justify-between py-6 md:py-8 px-2 text-left group"
       >
         <span className={`font-outfit text-lg md:text-xl transition-colors duration-300 ${
-          isOpen ? 'text-iris-light-teal' : 'text-white'
+          isOpen ? 'text-[#dbc7ad]' : 'text-[#dbc7ad]/80'
         }`}>
           {item.q}
         </span>
@@ -42,7 +42,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
           isOpen ? 'open' : ''
         }`}>
           <Plus size={20} className={`transition-colors duration-300 ${
-            isOpen ? 'text-iris-light-teal' : 'text-iris-red'
+            isOpen ? 'text-[#dbc7ad]' : 'text-iris-red'
           }`} />
         </div>
       </button>
@@ -56,7 +56,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden"
           >
-            <p className="font-manrope text-white/60 text-base md:text-lg leading-relaxed pb-6 px-2">
+            <p className="font-manrope text-base md:text-lg leading-relaxed pb-6 px-2" style={{ color: 'rgba(219,199,173,0.6)' }}>
               {item.a}
             </p>
           </motion.div>
@@ -76,7 +76,8 @@ export default function FAQSection() {
       data-testid="faq-section"
       id="faq"
       ref={ref}
-      className="py-24 md:py-32 bg-iris-dark"
+      className="py-24 md:py-32"
+      style={{ backgroundColor: '#21190f' }}
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -90,7 +91,7 @@ export default function FAQSection() {
             <span className="deco-square" style={{ borderColor: '#be1f33' }} />
             <span className="deco-square" style={{ borderColor: '#be1f33' }} />
           </div>
-          <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight text-white">
+          <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight" style={{ color: '#dbc7ad' }}>
             Частые вопросы
           </h2>
         </motion.div>
