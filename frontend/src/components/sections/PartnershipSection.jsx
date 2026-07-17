@@ -183,11 +183,12 @@ export default function PartnershipSection() {
 
   return (
     <>
-      <section data-testid="partnership-section" id="partnership" ref={ref} className="py-24 md:py-32 bg-iris-warm overflow-hidden">
+      <section data-testid="partnership-section" id="partnership" ref={ref} className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#21190f' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
-            <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight text-iris-text">Станьте частью нашей истории</h2>
-            <p className="font-manrope text-iris-text/60 mt-4 text-base md:text-lg max-w-xl mx-auto">Мы открыты для сотрудничества с застройщиками, архитекторами и поставщиками</p>
+            <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight" style={{ color: '#dbc7ad' }}>Станьте частью нашей истории</h2>
+            <p className="font-manrope mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'rgba(219,199,173,0.6)' }}>Мы открыты для сотрудничества с застройщиками, архитекторами и поставщиками</p>
+            <div className="mx-auto mt-8 w-24 h-1" style={{ backgroundColor: '#dbc7ad', opacity: 0.3 }} />
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -204,7 +205,7 @@ export default function PartnershipSection() {
               Стать партнёром
               <ArrowRight size={16} className="arrow-icon" />
             </button>
-            <button data-testid="partner-details-btn" onClick={() => setShowDetails(true)} className="cta-btn border-2 border-iris-text text-iris-text px-10 py-4 font-outfit text-sm tracking-widest uppercase flex items-center gap-2 hover:bg-iris-text hover:text-white transition-all duration-300">
+            <button data-testid="partner-details-btn" onClick={() => setShowDetails(true)} className="cta-btn border-2 px-10 py-4 font-outfit text-sm tracking-widest uppercase flex items-center gap-2 hover:text-white transition-all duration-300" style={{ borderColor: '#dbc7ad', color: '#dbc7ad' }}>
               Подробнее
               <ArrowRight size={16} className="arrow-icon" />
             </button>

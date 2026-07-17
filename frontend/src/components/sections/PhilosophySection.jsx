@@ -20,14 +20,15 @@ export default function PhilosophySection() {
       data-testid="philosophy-section"
       id="philosophy"
       ref={ref}
-      className="py-24 md:py-32 bg-iris-green relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden"
+      style={{ backgroundColor: '#21190f' }}
     >
       {/* Stamp badge */}
       <motion.div
         initial={{ opacity: 0, scale: 0, rotate: -20 }}
         animate={inView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.5, type: 'spring' }}
-        className="absolute top-8 right-8 md:top-12 md:right-12 w-28 h-28 md:w-36 md:h-36 border-2 border-iris-light-teal text-iris-light-teal rounded-full flex items-center justify-center z-10"
+        className="absolute top-8 right-8 md:top-12 md:right-12 w-28 h-28 md:w-36 md:h-36 border-2 border-[#dbc7ad] text-[#dbc7ad] rounded-full flex items-center justify-center z-10"
       >
         <div className="text-center">
           <span className="text-xs md:text-sm tracking-[0.2em] uppercase font-outfit block">Сервис</span>
@@ -42,10 +43,10 @@ export default function PhilosophySection() {
           transition={{ duration: 0.7 }}
           className="mb-16"
         >
-          <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight text-white">
+          <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight" style={{ color: '#dbc7ad' }}>
             Наша философия
           </h2>
-          <p className="font-manrope text-white/60 mt-4 text-base md:text-lg max-w-xl">
+          <p className="font-manrope mt-4 text-base md:text-lg max-w-xl" style={{ color: 'rgba(219,199,173,0.6)' }}>
             Принципы, которые делают каждый проект особенным
           </p>
         </motion.div>
@@ -61,17 +62,17 @@ export default function PhilosophySection() {
               className="group"
             >
               <div className="flex items-start gap-4">
-                <span className="font-outfit text-5xl md:text-6xl font-extralight text-white/20 leading-none select-none group-hover:text-iris-light-teal/40 transition-colors duration-500">
+                <span className="font-outfit text-5xl md:text-6xl font-extralight leading-none select-none group-hover:text-[#dbc7ad]/40 transition-colors duration-500" style={{ color: 'rgba(219,199,173,0.2)' }}>
                   {item.num}
                 </span>
                 <div className="pt-2">
-                  <h3 className="font-outfit text-xl md:text-2xl text-white font-medium flex items-center gap-2">
+                  <h3 className="font-outfit text-xl md:text-2xl font-medium flex items-center gap-2" style={{ color: '#dbc7ad' }}>
                     {item.title}
                     {item.hasLeaf && (
-                      <Leaf size={18} className="text-iris-light-teal" />
+                      <Leaf size={18} className="text-[#dbc7ad]" />
                     )}
                   </h3>
-                  <p className="font-manrope text-white/60 text-sm md:text-base mt-2 leading-relaxed">
+                  <p className="font-manrope text-sm md:text-base mt-2 leading-relaxed" style={{ color: 'rgba(219,199,173,0.6)' }}>
                     {item.desc}
                   </p>
                 </div>

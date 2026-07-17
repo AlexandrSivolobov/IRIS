@@ -19,42 +19,6 @@ export default function TeamSection() {
 
   return (
     <section data-testid="team-section" id="team" ref={ref}>
-      {/* Team photo with torn paper overlay */}
-      <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
-        <img
-          src={TEAM_IMG}
-          alt="Наша команда"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-iris-dark/90" />
-
-        {/* Torn paper overlay */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="torn-paper absolute bottom-0 left-0 right-0 bg-iris-warm px-6 md:px-16 pt-12 pb-8"
-        >
-          <div className="max-w-3xl">
-            <h2 className="font-outfit font-medium text-3xl md:text-4xl text-iris-text mb-4">
-              Наша команда
-            </h2>
-            <p className="font-manrope text-iris-text/70 text-base md:text-lg mb-6 leading-relaxed">
-              Мы — команда единомышленников, объединённых страстью к дизайну. 
-              Каждый из нас привносит уникальный взгляд и опыт, создавая интерьеры, 
-              которые рассказывают истории.
-            </p>
-            <button
-              data-testid="team-join-btn"
-              className="cta-btn bg-iris-teal text-white px-8 py-3 font-outfit text-sm tracking-widest uppercase flex items-center gap-2 hover:bg-iris-teal/90"
-            >
-              Присоединиться
-              <ArrowRight size={16} className="arrow-icon" />
-            </button>
-          </div>
-        </motion.div>
-      </div>
-
       {/* Benefits list on dark background */}
       <div className="bg-iris-dark py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
