@@ -77,7 +77,8 @@ export default function AboutSection() {
       data-testid="about-section"
       id="about"
       ref={ref}
-      className="py-24 md:py-32 bg-iris-warm overflow-hidden"
+      className="py-24 md:py-32 overflow-hidden"
+      style={{ backgroundColor: '#21190f' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title with decorative squares */}
@@ -92,7 +93,7 @@ export default function AboutSection() {
             <span className="deco-square" />
             <span className="deco-square" />
           </div>
-          <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight text-iris-text uppercase leading-tight max-w-3xl">
+          <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight uppercase leading-tight max-w-3xl" style={{ color: '#dbc7ad' }}>
             Место, где дом превращается в{' '}
             <span className="text-iris-teal">историю</span>
           </h2>
@@ -106,13 +107,13 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-4"
           >
-            <p className="text-base md:text-lg leading-relaxed text-iris-text/80 mb-6">
+            <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: '#dbc7ad' }}>
               Студия <span className="text-iris-red font-semibold">«Ирис»</span> — это команда
               архитекторов и дизайнеров, для которых каждый проект — не просто набор квадратных метров,
               а уникальная <span className="text-iris-teal font-semibold">история</span>, рассказанная
               через свет, фактуры и пространство.
             </p>
-            <p className="text-base md:text-lg leading-relaxed text-iris-text/80">
+            <p className="text-base md:text-lg leading-relaxed" style={{ color: '#dbc7ad' }}>
               Мы верим, что интерьер должен не только выглядеть красиво, но и{' '}
               <span className="text-iris-green font-semibold">чувствоваться</span> правильно.
               Каждая деталь продумана: от текстуры дерева до направления солнечного света.

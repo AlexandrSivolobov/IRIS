@@ -66,7 +66,7 @@ export default function HeroSection() {
           <h1 className="text-white text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] tracking-[0.12em] leading-none uppercase" style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 400 }}>
             Ирис
           </h1>
-          <span className="font-caveat text-iris-light-teal text-5xl sm:text-6xl md:text-7xl lg:text-8xl block mt-2">
+          <span className="font-caveat text-[#f5e6d3] text-5xl sm:text-6xl md:text-7xl lg:text-8xl block mt-2">
             Design
           </span>
         </motion.div>
