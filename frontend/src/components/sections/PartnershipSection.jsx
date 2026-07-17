@@ -185,7 +185,7 @@ export default function PartnershipSection() {
     <>
       <section data-testid="partnership-section" id="partnership" ref={ref} className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#21190f' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="border p-10 md:p-16" style={{ borderColor: '#dbc7ad' }}>
+          <div className="border-2 p-12 md:p-20" style={{ borderColor: '#dbc7ad' }}>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
             <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight" style={{ color: '#dbc7ad' }}>Станьте частью нашей истории</h2>
             <p className="font-manrope mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'rgba(219,199,173,0.6)' }}>Мы открыты для сотрудничества с застройщиками, архитекторами и поставщиками</p>

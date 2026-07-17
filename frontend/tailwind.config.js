@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
+        outfit: ['Poiret One', 'Outfit', 'sans-serif'],
         manrope: ['Manrope', 'sans-serif'],
         caveat: ['Caveat', 'cursive'],
       },
