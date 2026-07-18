@@ -102,13 +102,13 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-4 font-outfit"
           >
-            <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: '#dbc7ad' }}>
+            <p className="text-lg md:text-xl leading-relaxed mb-6" style={{ color: '#dbc7ad' }}>
               Студия <span className="text-iris-red font-semibold">«Ирис»</span> — это команда
               архитекторов и дизайнеров, для которых каждый проект — не просто набор квадратных метров,
               а уникальная <span className="font-semibold" style={{ color: '#dbc7ad' }}>история</span>, рассказанная
               через свет, фактуры и пространство.
             </p>
-            <p className="text-base md:text-lg leading-relaxed" style={{ color: '#dbc7ad' }}>
+            <p className="text-lg md:text-xl leading-relaxed" style={{ color: '#dbc7ad' }}>
               Мы верим, что интерьер должен не только выглядеть красиво, но и{' '}
               <span className="font-semibold" style={{ color: '#dbc7ad' }}>чувствоваться</span> правильно.
               Каждая деталь продумана: от текстуры дерева до направления солнечного света.
