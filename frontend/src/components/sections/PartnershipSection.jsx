@@ -183,36 +183,7 @@ export default function PartnershipSection() {
 
   return (
     <>
-      <section data-testid="partnership-section" id="partnership" ref={ref} className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#21190f' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="border-2 p-12 md:p-20" style={{ borderColor: '#dbc7ad' }}>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
-            <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight" style={{ color: '#dbc7ad' }}>Станьте частью нашей истории</h2>
-            <p className="font-manrope mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'rgba(219,199,173,0.6)' }}>Мы открыты для сотрудничества с застройщиками, архитекторами и поставщиками</p>
-            <div className="mx-auto mt-8 w-24 h-1" style={{ backgroundColor: '#dbc7ad', opacity: 0.3 }} />
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            {partnerProjects.map((project, i) => (
-              <motion.div key={i} data-testid={`partner-project-${i}`} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 * i }} className="relative group overflow-hidden aspect-[4/3]">
-                <img src={project.img} alt={`Проект ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.4 }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button data-testid="partner-cta-btn" onClick={() => setShowForm(true)} className="cta-btn bg-iris-red text-white px-10 py-4 font-outfit text-sm tracking-widest uppercase flex items-center gap-2 hover:bg-iris-red-hover">
-              Стать партнёром
-              <ArrowRight size={16} className="arrow-icon" />
-            </button>
-            <button data-testid="partner-details-btn" onClick={() => setShowDetails(true)} className="cta-btn border-2 px-10 py-4 font-outfit text-sm tracking-widest uppercase flex items-center gap-2 hover:text-white transition-all duration-300" style={{ borderColor: '#dbc7ad', color: '#dbc7ad' }}>
-              Подробнее
-              <ArrowRight size={16} className="arrow-icon" />
-            </button>
-          </motion.div>
-          </div>
-        </div>
+      <section data-testid="partnership-section" id="partnership" ref={ref}>
       </section>
 
       <AnimatePresence>

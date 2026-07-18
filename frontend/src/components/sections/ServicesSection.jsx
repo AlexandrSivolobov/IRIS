@@ -42,6 +42,18 @@ const services = [
     pricePerM2: 1500,
     img: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
+  {
+    id: 'service',
+    title: 'Сервис',
+    specs: [
+      { label: 'Гарантия', value: 'до 5 лет' },
+      { label: 'Реакция', value: '24 часа' },
+      { label: 'Стоимость от', value: 'индивид.' },
+    ],
+    description: 'Гарантийное и постгарантийное обслуживание объекта. Оперативное решение любых вопросов, техническая поддержка и сезонное обновление интерьера.',
+    pricePerM2: 500,
+    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+  },
 ];
 
 /* ─── Cost Calculator Modal ─── */
@@ -242,7 +254,6 @@ export default function ServicesSection() {
             <p className="font-manrope mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'rgba(219,199,173,0.6)' }}>Комплексный подход к созданию пространства вашей мечты</p>
           </motion.div>
 
-          {/* 3-column expanding panels */}
           <div className="flex h-[500px] md:h-[560px] gap-3 w-full">
             {services.map((service, i) => (
               <ServicePanel

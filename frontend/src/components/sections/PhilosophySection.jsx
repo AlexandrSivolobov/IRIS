@@ -62,10 +62,10 @@ export default function PhilosophySection() {
               className="group"
             >
               <div className="flex items-start gap-4">
-                <span className="font-outfit text-5xl md:text-6xl font-extralight leading-none select-none group-hover:text-[#dbc7ad]/40 transition-colors duration-500" style={{ color: 'rgba(219,199,173,0.2)' }}>
+                <span className="font-outfit text-5xl md:text-6xl font-extralight leading-none select-none group-hover:text-[#dbc7ad]/40 transition-colors duration-500 flex-shrink-0 w-16 md:w-20 text-right" style={{ color: 'rgba(219,199,173,0.2)' }}>
                   {item.num}
                 </span>
-                <div className="pt-2">
+                <div className="pt-2 text-left">
                   <h3 className="font-outfit text-xl md:text-2xl font-medium flex items-center gap-2" style={{ color: '#dbc7ad' }}>
                     {item.title}
                     {item.hasLeaf && (

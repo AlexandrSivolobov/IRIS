@@ -19,39 +19,6 @@ export default function TeamSection() {
 
   return (
     <section data-testid="team-section" id="team" ref={ref}>
-      {/* Benefits list on dark background */}
-      <div className="py-16 md:py-20" style={{ backgroundColor: '#21190f' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
-            <h3 className="font-outfit text-2xl md:text-3xl text-white mb-10">
-              Преимущества работы с нами
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-              {benefits.map((benefit, i) => (
-                <motion.div
-                  key={i}
-                  data-testid={`team-benefit-${i}`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-                  className="flex items-center gap-4"
-                >
-                  <div className="w-10 h-10 rounded-full bg-iris-teal/20 flex items-center justify-center flex-shrink-0">
-                    <benefit.icon size={18} className="text-iris-light-teal" />
-                  </div>
-                  <span className="font-manrope text-white/80 text-base md:text-lg">
-                    {benefit.text}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </div>
     </section>
   );
 }
