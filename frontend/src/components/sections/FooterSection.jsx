@@ -22,7 +22,7 @@ export default function FooterSection() {
           {/* Logo */}
           <div className="mb-12">
             <h3 className="font-outfit text-3xl md:text-4xl text-iris-text tracking-[0.1em]">
-              Ирис <span className="font-caveat text-iris-teal">Design</span>
+              Ирис <span className="font-caveat text-iris-red">Design</span>
             </h3>
             <p className="font-manrope text-iris-text/50 text-sm mt-2">
               Студия дизайна интерьеров

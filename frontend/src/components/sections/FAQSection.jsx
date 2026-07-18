@@ -86,11 +86,6 @@ export default function FAQSection() {
           transition={{ duration: 0.7 }}
           className="mb-12"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="deco-square" style={{ borderColor: '#be1f33' }} />
-            <span className="deco-square" style={{ borderColor: '#be1f33' }} />
-            <span className="deco-square" style={{ borderColor: '#be1f33' }} />
-          </div>
           <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight" style={{ color: '#dbc7ad' }}>
             Частые вопросы
           </h2>
