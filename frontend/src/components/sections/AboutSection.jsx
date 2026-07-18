@@ -100,7 +100,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-4"
+            className="lg:col-span-4 font-outfit"
           >
             <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: '#dbc7ad' }}>
               Студия <span className="text-iris-red font-semibold">«Ирис»</span> — это команда
