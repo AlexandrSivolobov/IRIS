@@ -214,10 +214,6 @@ export default function PortfolioSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <div className="flex items-center gap-3 mb-6">
-              <span className="deco-square" style={{ borderColor: '#9ed5dc' }} />
-              <span className="deco-square" style={{ borderColor: '#9ed5dc' }} />
-            </div>
             <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight text-white">Портфолио</h2>
             <p className="font-manrope text-white/50 mt-4 text-base md:text-lg">Избранные проекты студии</p>
           </motion.div>

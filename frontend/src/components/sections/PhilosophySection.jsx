@@ -41,7 +41,7 @@ export default function PhilosophySection() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-16"
+          className="mb-16 text-left"
         >
           <h2 className="font-outfit font-medium text-4xl md:text-5xl tracking-tight" style={{ color: '#dbc7ad' }}>
             Наша философия
@@ -51,7 +51,7 @@ export default function PhilosophySection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 text-left">
           {advantages.map((item, i) => (
             <motion.div
               key={item.num}

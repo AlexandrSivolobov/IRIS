@@ -88,11 +88,6 @@ export default function AboutSection() {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="deco-square" />
-            <span className="deco-square" />
-            <span className="deco-square" />
-          </div>
           <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight uppercase leading-tight max-w-3xl" style={{ color: '#dbc7ad' }}>
             Место, где дом превращается в{' '}
             <span style={{ color: '#dbc7ad' }}>историю</span>

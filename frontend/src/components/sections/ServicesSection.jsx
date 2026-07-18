@@ -238,10 +238,6 @@ export default function ServicesSection() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16 md:mb-20"
           >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <span className="w-3 h-3 border-2 border-[#dbc7ad] inline-block" />
-              <span className="w-3 h-3 border-2 border-[#dbc7ad] inline-block" />
-            </div>
             <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight" style={{ color: '#dbc7ad' }}>Наши услуги</h2>
             <p className="font-manrope mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'rgba(219,199,173,0.6)' }}>Комплексный подход к созданию пространства вашей мечты</p>
           </motion.div>
