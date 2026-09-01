@@ -1,9 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ArrowRight, X, CheckCircle } from 'lucide-react';
-import axios from 'axios';
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { ArrowRight, X } from 'lucide-react';
 
 const services = [
   {
@@ -15,7 +12,12 @@ const services = [
       { label: 'Стоимость от', value: '3 000 ₽/м²' },
     ],
     description: 'Полный пакет чертежей, 3D-визуализации и спецификаций материалов. Мы продумываем каждую деталь — от расположения розеток до текстуры обоев.',
-    pricePerM2: 3000,
+    details: [
+      'Обмерный план и планировочные решения',
+      '3D-визуализация ключевых зон',
+      'Рабочие чертежи и спецификация материалов',
+      'Подбор мебели, света и декора',
+    ],
     img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
   },
   {
@@ -27,7 +29,12 @@ const services = [
       { label: 'Стоимость от', value: '8 000 ₽/м²' },
     ],
     description: 'Воплощение проекта «под ключ»: от черновой отделки до расстановки мебели. Работаем с проверенными подрядчиками и гарантируем сроки.',
-    pricePerM2: 8000,
+    details: [
+      'Организация и координация всех подрядчиков',
+      'Черновая и чистовая отделка',
+      'Закупка и монтаж материалов по проекту',
+      'Финальная расстановка мебели и декора',
+    ],
     img: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
   },
   {
@@ -39,7 +46,12 @@ const services = [
       { label: 'Стоимость от', value: '1 500 ₽/м²' },
     ],
     description: 'Контроль качества на каждом этапе строительства. Регулярные выезды на объект, согласование материалов и решение нестандартных ситуаций.',
-    pricePerM2: 1500,
+    details: [
+      'Регулярные выезды на объект',
+      'Контроль соответствия проекту',
+      'Согласование замен материалов и решений',
+      'Оперативное решение нестандартных ситуаций',
+    ],
     img: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
@@ -51,101 +63,63 @@ const services = [
       { label: 'Стоимость от', value: 'индивид.' },
     ],
     description: 'Гарантийное и постгарантийное обслуживание объекта. Оперативное решение любых вопросов, техническая поддержка и сезонное обновление интерьера.',
-    pricePerM2: 500,
+    details: [
+      'Гарантийное обслуживание объекта',
+      'Техническая поддержка и мелкий ремонт',
+      'Сезонное обновление интерьера',
+      'Консультации по эксплуатации материалов',
+    ],
     img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
   },
 ];
 
-/* ─── Cost Calculator Modal ─── */
-function CostModal({ service, onClose }) {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', area: '' });
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  const liveEstimate = form.area ? Math.round(Number(form.area) * service.pricePerM2) : 0;
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!form.name || !form.phone || !form.area) { setError('Заполните обязательные поля'); return; }
-    setError('');
-    setLoading(true);
-    try {
-      const res = await axios.post(`${API}/cost-request`, {
-        name: form.name, phone: form.phone, email: form.email,
-        service: service.id, area: Number(form.area), message: '',
-      });
-      setResult(res.data);
-    } catch { setError('Ошибка отправки. Попробуйте ещё раз.'); }
-    finally { setLoading(false); }
-  };
-
+/* ─── Service Detail Modal ─── */
+function ServiceDetailModal({ service, onClose }) {
   return (
-    <motion.div data-testid={`cost-modal-${service.id}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+    <motion.div data-testid={`service-modal-${service.id}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={onClose}>
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
       <motion.div initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20 }}
         transition={{ type: 'spring', stiffness: 100, damping: 16 }} onClick={(e) => e.stopPropagation()}
-        className="relative z-10 bg-white max-w-lg w-full shadow-2xl">
-        <button data-testid={`cost-modal-close-${service.id}`} onClick={onClose}
+        className="relative z-10 bg-white max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        <button data-testid={`service-modal-close-${service.id}`} onClick={onClose}
           className="absolute top-4 right-4 z-20 w-8 h-8 bg-iris-dark/10 flex items-center justify-center hover:bg-iris-dark/20 transition-colors">
           <X size={16} />
         </button>
         <div className="p-8 md:p-10">
-          {!result ? (
-            <>
-              <h3 className="font-caveat text-3xl md:text-4xl text-iris-text mb-1">{service.title}</h3>
-              <p className="font-outfit text-sm text-iris-teal tracking-wider mb-6">от {service.pricePerM2.toLocaleString('ru-RU')} ₽/м²</p>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="font-outfit text-xs uppercase tracking-wider text-iris-text/50 block mb-1">Площадь (м²) *</label>
-                  <input data-testid={`cost-area-${service.id}`} type="number" min="1" value={form.area}
-                    onChange={(e) => setForm({ ...form, area: e.target.value })}
-                    className="w-full border border-iris-teal/20 px-4 py-3 font-manrope text-sm focus:outline-none focus:border-iris-teal transition-colors" placeholder="Например, 80" />
-                </div>
-                {liveEstimate > 0 && (
-                  <div className="bg-iris-warm p-4 border border-iris-teal/10">
-                    <p className="font-outfit text-xs uppercase tracking-wider text-iris-text/50 mb-1">Предварительная стоимость</p>
-                    <p className="font-outfit text-2xl md:text-3xl text-iris-red font-medium">{liveEstimate.toLocaleString('ru-RU')} ₽</p>
-                  </div>
-                )}
-                <div>
-                  <label className="font-outfit text-xs uppercase tracking-wider text-iris-text/50 block mb-1">Ваше имя *</label>
-                  <input data-testid={`cost-name-${service.id}`} type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full border border-iris-teal/20 px-4 py-3 font-manrope text-sm focus:outline-none focus:border-iris-teal transition-colors" placeholder="Иван Иванов" />
-                </div>
-                <div>
-                  <label className="font-outfit text-xs uppercase tracking-wider text-iris-text/50 block mb-1">Телефон *</label>
-                  <input data-testid={`cost-phone-${service.id}`} type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full border border-iris-teal/20 px-4 py-3 font-manrope text-sm focus:outline-none focus:border-iris-teal transition-colors" placeholder="+7 (999) 123-45-67" />
-                </div>
-                <div>
-                  <label className="font-outfit text-xs uppercase tracking-wider text-iris-text/50 block mb-1">Email</label>
-                  <input data-testid={`cost-email-${service.id}`} type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full border border-iris-teal/20 px-4 py-3 font-manrope text-sm focus:outline-none focus:border-iris-teal transition-colors" placeholder="email@example.com" />
-                </div>
-                {error && <p className="text-iris-red text-sm font-manrope">{error}</p>}
-                <button data-testid={`cost-submit-${service.id}`} type="submit" disabled={loading}
-                  className="cta-btn w-full bg-iris-red text-white py-4 font-outfit text-sm tracking-[0.2em] uppercase flex items-center justify-center gap-2 hover:bg-iris-red-hover disabled:opacity-60">
-                  {loading ? 'Отправка...' : 'Рассчитать и отправить'}
-                  {!loading && <ArrowRight size={16} className="arrow-icon" />}
-                </button>
-              </form>
-            </>
-          ) : (
-            <div className="text-center py-6">
-              <CheckCircle size={48} className="text-iris-teal mx-auto mb-4" />
-              <h3 className="font-outfit text-2xl text-iris-text mb-2">Заявка отправлена</h3>
-              <div className="bg-iris-warm p-5 my-6 border border-iris-teal/10">
-                <p className="font-outfit text-xs uppercase tracking-wider text-iris-text/50 mb-1">Стоимость {service.title.toLowerCase()}</p>
-                <p className="font-outfit text-3xl text-iris-red font-medium">{result.estimated_cost.toLocaleString('ru-RU')} ₽</p>
-                <p className="font-manrope text-xs text-iris-text/40 mt-1">{result.price_per_m2.toLocaleString('ru-RU')} ₽/м² × {form.area} м²</p>
+          <h3 className="font-caveat text-3xl md:text-4xl text-iris-text mb-1">{service.title}</h3>
+          <p className="font-outfit text-sm text-iris-teal tracking-wider mb-6">Подробное описание услуги</p>
+
+          <p className="font-manrope text-base text-iris-text/80 leading-relaxed mb-6">
+            {service.description}
+          </p>
+
+          <div className="space-y-2 mb-6">
+            {service.specs.map((spec, i) => (
+              <div key={i} className="flex items-baseline gap-2">
+                <span className="font-manrope text-sm text-iris-text/50 whitespace-nowrap">{spec.label}</span>
+                <span className="flex-1 border-b border-dotted border-iris-teal/20 min-w-[20px] relative top-[-2px]" />
+                <span className="font-outfit text-sm font-semibold text-iris-text whitespace-nowrap">{spec.value}</span>
               </div>
-              <p className="font-manrope text-sm text-iris-text/60">Мы свяжемся с вами для уточнения деталей</p>
-              <button data-testid={`cost-close-${service.id}`} onClick={onClose}
-                className="mt-6 font-outfit text-sm text-iris-teal underline underline-offset-4 hover:text-iris-teal/70 transition-colors">Закрыть</button>
-            </div>
-          )}
+            ))}
+          </div>
+
+          <div className="border-t border-dashed border-iris-teal/20 pt-6">
+            <h4 className="font-outfit text-xs uppercase tracking-widest text-iris-teal mb-4">Что входит в услугу</h4>
+            <ul className="space-y-3">
+              {service.details.map((detail, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-iris-red mt-2 flex-shrink-0" />
+                  <span className="font-manrope text-sm text-iris-text/70">{detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button data-testid={`service-modal-close-btn-${service.id}`} onClick={onClose}
+            className="mt-8 w-full bg-iris-red text-white py-4 font-outfit text-sm tracking-[0.2em] uppercase hover:bg-iris-red-hover transition-colors">
+            Закрыть
+          </button>
         </div>
       </motion.div>
     </motion.div>
@@ -153,7 +127,7 @@ function CostModal({ service, onClose }) {
 }
 
 /* ─── Expanding Service Card ─── */
-function ServicePanel({ service, isHovered, onHover, onLeave, onOpenCost, inView, index }) {
+function ServicePanel({ service, isHovered, onHover, onLeave, onOpenDetail, inView, index }) {
   return (
     <motion.div
       data-testid={`service-card-${service.id}`}
@@ -210,10 +184,10 @@ function ServicePanel({ service, isHovered, onHover, onLeave, onOpenCost, inView
 
         <button
           data-testid={`service-cta-${service.id}`}
-          onClick={(e) => { e.stopPropagation(); onOpenCost(service); }}
+          onClick={(e) => { e.stopPropagation(); onOpenDetail(service); }}
           className="cta-btn bg-iris-red text-white py-3 px-6 font-outfit text-xs tracking-[0.2em] uppercase flex items-center justify-center gap-2 hover:bg-iris-red-hover transition-all duration-300 w-fit"
         >
-          Узнать стоимость
+          Узнать подробнее
           <ArrowRight size={14} className="arrow-icon" />
         </button>
       </motion.div>
@@ -264,7 +238,7 @@ export default function ServicesSection() {
                 isHovered={hoveredIdx === i}
                 onHover={() => setHoveredIdx(i)}
                 onLeave={() => setHoveredIdx(null)}
-                onOpenCost={setActiveService}
+                onOpenDetail={setActiveService}
               />
             ))}
           </div>
@@ -272,7 +246,7 @@ export default function ServicesSection() {
       </section>
 
       <AnimatePresence>
-        {activeService && <CostModal service={activeService} onClose={() => setActiveService(null)} />}
+        {activeService && <ServiceDetailModal service={activeService} onClose={() => setActiveService(null)} />}
       </AnimatePresence>
     </>
   );

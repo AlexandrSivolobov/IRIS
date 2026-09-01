@@ -13,9 +13,9 @@ const images = [
     caption: '«Семейная гармония», 2022',
   },
   {
-    src: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=800',
-    alt: 'Спальня — Городской оазис',
-    caption: '«Городской оазис», 2023',
+    src: '/psb_photos/psb-lobby.jpg',
+    alt: 'Лобби — ПСБ: Черноморский офис',
+    caption: '«ПСБ: Черноморский офис», 2026',
   },
 ];
 
