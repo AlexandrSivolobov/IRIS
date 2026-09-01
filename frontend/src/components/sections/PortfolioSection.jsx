@@ -38,26 +38,37 @@ const projects = [
     ],
   },
   {
-    id: 'oasis',
-    title: 'Проект «Городской оазис»',
-    area: '120 м²',
-    year: '2023',
-    location: 'Санкт-Петербург, Петроградская сторона',
-    style: 'Современный эклектизм',
-    duration: '4 месяца',
-    img: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=1400',
-    description: 'Компактная квартира, превращённая в уютный оазис. Грамотное зонирование позволило разместить спальню, кабинет и гостиную в открытом пространстве. Акцент на текстуры: дерево, латунь, натуральный текстиль — создают ощущение тепла и уюта.',
+    id: 'psb-sukhum',
+    title: 'Проект «ПСБ: Черноморский офис»',
+    area: '980 м²',
+    year: '2026',
+    location: 'Сухум, Абхазия',
+    style: 'Современная корпоративная элегантность',
+    duration: '10 месяцев',
+    img: '/portfolio/psb/lobby.png',
+    gallery: [
+      '/portfolio/psb/lobby.png',
+      '/portfolio/psb/exterior.png',
+      '/portfolio/psb/lounge.png',
+      '/portfolio/psb/conference.png',
+      '/portfolio/psb/staircase.png',
+    ],
+    description: 'Офисное пространство банка ПСБ в Сухуме — сочетание надёжности финансового института с тёплой атмосферой Черноморского побережья. Светлые тона, натуральное дерево и камень, панорамное остекление и биофильные элементы формируют образ современного банка, открытого для клиентов и сотрудников. В интерьере органично вплетены традиционные орнаментальные мотивы — от лазерной резки на стекле до подсвеченных панелей с геометрическим узором.',
     details: [
-      'Зонирование без перегородок',
-      'Встроенный кабинет в нише',
-      'Декоративная штукатурка ручной работы',
-      'Латунные акценты и тёплый свет',
+      'Лобби с водяной стеной и озеленением',
+      'VIP-зона ожидания с орнаментальными панелями',
+      'Переговорная с деревянной отделкой и бусинными люстрами',
+      'Лестничный узел со стеклянными ограждениями',
+      'Фасад из светлого камня с панорамными витринами',
     ],
   },
 ];
 
 /* ─── Modal ─── */
 function ProjectModal({ project, onClose }) {
+  const images = project.gallery ?? [project.img];
+  const [activeImage, setActiveImage] = useState(0);
+
   return (
     <motion.div
       data-testid={`project-modal-${project.id}`}
@@ -91,7 +102,7 @@ function ProjectModal({ project, onClose }) {
         {/* Hero image */}
         <div className="relative w-full aspect-[16/9] overflow-hidden">
           <img
-            src={project.img}
+            src={images[activeImage]}
             alt={project.title}
             className="w-full h-full object-cover"
           />
@@ -100,6 +111,22 @@ function ProjectModal({ project, onClose }) {
             <h2 className="font-caveat text-3xl md:text-5xl text-white">{project.title}</h2>
           </div>
         </div>
+
+        {images.length > 1 && (
+          <div className="flex gap-2 p-4 bg-white border-b border-iris-teal/10 overflow-x-auto">
+            {images.map((src, i) => (
+              <button
+                key={src}
+                onClick={() => setActiveImage(i)}
+                className={`flex-shrink-0 w-20 h-14 overflow-hidden border-2 transition-colors ${
+                  i === activeImage ? 'border-iris-teal' : 'border-transparent opacity-60 hover:opacity-100'
+                }`}
+              >
+                <img src={src} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Details */}
         <div className="p-6 md:p-10">
