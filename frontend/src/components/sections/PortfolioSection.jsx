@@ -1,60 +1,117 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
-import { ArrowRight, X, Ruler, Calendar, MapPin, Palette } from 'lucide-react';
+import { ArrowRight, X, Ruler, Calendar, MapPin, Palette, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
   {
-    id: 'forest',
-    title: 'Проект «Лесной дом»',
-    area: '240 м²',
-    year: '2024',
-    location: 'Московская область, Истринский район',
+    id: 'volgograd',
+    title: 'Проект «Волжские высоты»',
+    area: '130 м²',
+    year: '2025',
+    location: 'Волгоград',
     style: 'Современная классика',
-    duration: '8 месяцев',
-    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=80',
-    description: 'Загородный дом в окружении соснового леса. Основная идея — максимально связать интерьер с природой: панорамные окна, натуральные материалы, тёплая палитра. Гостиная с камином плавно переходит в открытую террасу, а спальни ориентированы на восход.',
-    details: [
-      'Панорамное остекление с видом на лес',
-      'Камин из натурального камня',
-      'Система «умный дом»',
-      'Авторская мебель из массива дуба',
-    ],
+    img: '/photos/living-room.jpg',
+    photos: ['/photos/living-room.jpg', '/photos/bedroom.jpg', '/photos/terrace-1.jpg', '/photos/terrace-2.jpg'],
+    description: 'Двухэтажная квартира с двумя террасами для семьи, переехавшей в Волгоград. Просторная гостиная с панорамными окнами, уютная спальня в тёплых тонах и террасы с видом на город.',
+    details: ['Двухуровневая планировка 130 м²', 'Две террасы с панорамным видом', 'Гостиная в стиле современной классики', 'Спальня с авторским текстильным оформлением'],
   },
   {
-    id: 'terrace',
-    title: 'Проект «Солнечная терраса»',
-    area: '180 м²',
-    year: '2024',
-    location: 'Москва, Хамовники',
-    style: 'Скандинавский минимализм',
-    duration: '5 месяцев',
-    img: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&q=80',
-    description: 'Квартира с просторной террасой в центре Москвы. Светлые тона, обилие естественного света и функциональная планировка. Кухня-гостиная стала сердцем дома, а терраса — продолжением жилого пространства с зоной отдыха и зелёным садом.',
-    details: [
-      'Объединённая кухня-гостиная 60 м²',
-      'Озеленённая терраса с системой полива',
-      'Скрытые системы хранения',
-      'Итальянская керамика и датская мебель',
-    ],
+    id: 'harmony',
+    title: 'Проект «Семейная гармония»',
+    area: '125 м²',
+    year: '2022',
+    location: 'Волгоград',
+    style: 'Неоклассика',
+    img: '/photos/neo-living.jpg',
+    photos: ['/photos/neo-living.jpg', '/photos/neo-kitchen.jpg', '/photos/neo-family-ny.jpg', '/photos/neo-family-table.jpg'],
+    description: 'Квартира в стиле неоклассики для молодой семьи. Элегантная гостиная с лепниной, кухня с островом и тёплая атмосфера, где каждый уголок наполнен счастливыми моментами.',
+    details: ['Неоклассический стиль с современными акцентами', 'Кухня с островом и панорамным видом', 'Гостиная с элементами лепнины', 'Пространство для семейных вечеров'],
   },
   {
-    id: 'oasis',
-    title: 'Проект «Городской оазис»',
-    area: '120 м²',
-    year: '2023',
-    location: 'Санкт-Петербург, Петроградская сторона',
-    style: 'Современный эклектизм',
-    duration: '4 месяца',
-    img: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=1400',
-    description: 'Компактная квартира, превращённая в уютный оазис. Грамотное зонирование позволило разместить спальню, кабинет и гостиную в открытом пространстве. Акцент на текстуры: дерево, латунь, натуральный текстиль — создают ощущение тепла и уюта.',
+    id: 'psb',
+    title: 'Проект «Национальный код»',
+    area: '340 м²',
+    year: '2026',
+    location: 'Сухум, Абхазия',
+    style: 'Современная классика с национальными мотивами',
+    img: '/psb_photos/psb-meeting.jpg',
+    photos: [
+      '/psb_photos/psb-meeting.jpg',
+      '/psb_photos/psb-lobby.jpg',
+      '/psb_photos/psb-lounge.jpg',
+      '/psb_photos/psb-stairs.jpg',
+      '/psb_photos/psb-facade.jpg',
+    ],
+    description: 'Офис банка ПСБ в самом сердце Сухума. Представительское пространство, где строгая деловая эстетика переплетается с национальным абхазским орнаментом. Тёплое дерево, латунные акценты и авторские люстры из бисера создают атмосферу доверия и спокойной роскоши, а декоративная водяная стена и живая зелень наполняют интерьер ощущением южного гостеприимства.',
     details: [
-      'Зонирование без перегородок',
-      'Встроенный кабинет в нише',
-      'Декоративная штукатурка ручной работы',
-      'Латунные акценты и тёплый свет',
+      'Переговорная с массивным столом и авторскими бисерными люстрами',
+      'Зона ожидания с мягкими креслами и деревянными панелями',
+      'Ажурные лазерные экраны с национальным абхазским орнаментом',
+      'Декоративная водяная стена и вертикальное озеленение',
+      'Каменный фасад с панорамным остеклением и входной группой',
+      'Магистральное трековое освещение и латунная фурнитура',
     ],
   },
 ];
+
+/* ─── Photo Gallery ─── */
+function PhotoGallery({ photos, title }) {
+  const [idx, setIdx] = useState(0);
+  const prev = () => setIdx((i) => (i - 1 + photos.length) % photos.length);
+  const next = () => setIdx((i) => (i + 1) % photos.length);
+
+  return (
+    <div className="relative w-full aspect-[16/9] overflow-hidden bg-black">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={idx}
+          src={photos[idx]}
+          alt={`${title} — фото ${idx + 1}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="w-full h-full object-cover"
+        />
+      </AnimatePresence>
+
+      {photos.length > 1 && (
+        <>
+          <button
+            data-testid="gallery-prev"
+            onClick={prev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            data-testid="gallery-next"
+            onClick={next}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {photos.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === i ? 'bg-white w-5' : 'bg-white/40'}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+      <div className="absolute bottom-10 left-6 md:left-10 pointer-events-none">
+        <h2 className="font-caveat text-3xl md:text-5xl text-white">{title}</h2>
+      </div>
+    </div>
+  );
+}
 
 /* ─── Modal ─── */
 function ProjectModal({ project, onClose }) {
@@ -67,10 +124,8 @@ function ProjectModal({ project, onClose }) {
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
-      {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 40, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -79,7 +134,6 @@ function ProjectModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
         className="relative z-10 bg-iris-warm max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
       >
-        {/* Close button */}
         <button
           data-testid={`modal-close-${project.id}`}
           onClick={onClose}
@@ -88,22 +142,11 @@ function ProjectModal({ project, onClose }) {
           <X size={20} />
         </button>
 
-        {/* Hero image */}
-        <div className="relative w-full aspect-[16/9] overflow-hidden">
-          <img
-            src={project.img}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-          <div className="absolute bottom-6 left-6 md:left-10">
-            <h2 className="font-caveat text-3xl md:text-5xl text-white">{project.title}</h2>
-          </div>
-        </div>
+        {/* Photo gallery */}
+        <PhotoGallery photos={project.photos} title={project.title} />
 
         {/* Details */}
         <div className="p-6 md:p-10">
-          {/* Specs grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
               { icon: Ruler, label: 'Площадь', value: project.area },
@@ -119,16 +162,12 @@ function ProjectModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* Description */}
           <p className="font-manrope text-base md:text-lg text-iris-text/80 leading-relaxed mb-8">
             {project.description}
           </p>
 
-          {/* Highlights */}
           <div className="border-t border-dashed border-iris-teal/20 pt-6">
-            <h4 className="font-outfit text-sm uppercase tracking-widest text-iris-teal mb-4">
-              Особенности проекта
-            </h4>
+            <h4 className="font-outfit text-sm uppercase tracking-widest text-iris-teal mb-4">Особенности проекта</h4>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {project.details.map((detail, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -138,12 +177,6 @@ function ProjectModal({ project, onClose }) {
               ))}
             </ul>
           </div>
-
-          {/* Duration */}
-          <div className="mt-8 flex items-center gap-2">
-            <span className="font-outfit text-xs uppercase tracking-widest text-iris-text/40">Срок реализации:</span>
-            <span className="font-outfit text-sm text-iris-text font-medium">{project.duration}</span>
-          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -151,13 +184,10 @@ function ProjectModal({ project, onClose }) {
 }
 
 /* ─── Portfolio Item ─── */
-function PortfolioItem({ project, index, onOpen }) {
+function PortfolioItem({ project, onOpen }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
 
   return (
@@ -182,9 +212,7 @@ function PortfolioItem({ project, index, onOpen }) {
             <span className="text-white/30">|</span>
             <span className="font-outfit text-white/50 text-sm tracking-widest">{project.year}</span>
           </div>
-
           <h3 className="font-caveat text-4xl md:text-5xl lg:text-6xl text-white mb-6">{project.title}</h3>
-
           <button
             data-testid={`portfolio-cta-${project.id}`}
             onClick={() => onOpen(project)}
@@ -227,9 +255,7 @@ export default function PortfolioSection() {
       </section>
 
       <AnimatePresence>
-        {activeProject && (
-          <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
-        )}
+        {activeProject && <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />}
       </AnimatePresence>
     </>
   );

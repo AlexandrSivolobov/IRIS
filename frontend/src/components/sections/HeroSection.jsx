@@ -3,20 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const slides = [
   {
-    url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=80',
-    alt: 'Современная гостиная'
+    url: '/photos/living-room.jpg',
+    alt: 'Гостиная — Волгоград'
   },
   {
-    url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80',
-    alt: 'Солнечная кухня'
+    url: '/photos/bedroom.jpg',
+    alt: 'Спальня — Волгоград'
   },
   {
-    url: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    alt: 'Уютная спальня'
+    url: '/photos/terrace-1.jpg',
+    alt: 'Терраса — Волгоград'
   },
   {
-    url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80',
-    alt: 'Тёплый интерьер'
+    url: '/photos/terrace-2.jpg',
+    alt: 'Терраса с видом — Волгоград'
   },
 ];
 

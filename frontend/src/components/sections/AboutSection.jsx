@@ -3,19 +3,19 @@ import { motion, useInView } from 'framer-motion';
 
 const images = [
   {
-    src: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=800&q=80',
-    alt: 'Счастливая семья',
-    caption: 'Семья Ивановых, 2024',
+    src: '/photos/living-room.jpg',
+    alt: 'Гостиная — Волжские высоты',
+    caption: '«Волжские высоты», 2025',
   },
   {
-    src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',
-    alt: 'Уютная гостиная',
-    caption: 'Проект «Лесной дом»',
+    src: '/photos/neo-living.jpg',
+    alt: 'Гостиная — Семейная гармония',
+    caption: '«Семейная гармония», 2022',
   },
   {
-    src: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
-    alt: 'Светлая кухня',
-    caption: 'Проект «Солнечная терраса»',
+    src: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=800',
+    alt: 'Спальня — Городской оазис',
+    caption: '«Городской оазис», 2023',
   },
 ];
 
