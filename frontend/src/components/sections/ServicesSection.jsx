@@ -18,7 +18,7 @@ const services = [
       'Рабочие чертежи и спецификация материалов',
       'Подбор мебели, света и декора',
     ],
-    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+    img: '/photos/living-room.jpg',
   },
   {
     id: 'realization',
@@ -35,7 +35,7 @@ const services = [
       'Закупка и монтаж материалов по проекту',
       'Финальная расстановка мебели и декора',
     ],
-    img: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+    img: '/photos/neo-kitchen.jpg',
   },
   {
     id: 'supervision',
@@ -52,7 +52,7 @@ const services = [
       'Согласование замен материалов и решений',
       'Оперативное решение нестандартных ситуаций',
     ],
-    img: 'https://images.pexels.com/photos/3705537/pexels-photo-3705537.jpeg?auto=compress&cs=tinysrgb&w=800',
+    img: '/psb_photos/psb-stairs.jpg',
   },
   {
     id: 'service',
@@ -69,7 +69,7 @@ const services = [
       'Сезонное обновление интерьера',
       'Консультации по эксплуатации материалов',
     ],
-    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+    img: '/psb_photos/psb-lounge.jpg',
   },
 ];
 
