@@ -8,7 +8,6 @@ import PortfolioSection from "@/components/sections/PortfolioSection";
 import TeamSection from "@/components/sections/TeamSection";
 import PartnershipSection from "@/components/sections/PartnershipSection";
 import FAQSection from "@/components/sections/FAQSection";
-import ContactForm from "@/components/ContactForm";
 import FooterSection from "@/components/sections/FooterSection";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
       <PartnershipSection />
       <FAQSection />
       <FooterSection />
-      <ContactForm />
     </div>
   );
 }
