@@ -77,7 +77,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.8 }}
           className="text-white/80 font-manrope text-base sm:text-lg mt-8 tracking-widest uppercase max-w-lg text-center"
         >
-          Студия дизайна интерьеров
+          Архитектура, дизайн, реализация
         </motion.p>
 
         <motion.button
@@ -91,19 +91,6 @@ export default function HeroSection() {
           Узнать больше
           <span className="arrow-icon">&#8594;</span>
         </motion.button>
-      </div>
-
-      {/* Bottom marquee */}
-      <div className="absolute bottom-0 left-0 w-full py-4 bg-gradient-to-t from-black/60 to-transparent z-10">
-        <div className="overflow-hidden">
-          <div className="marquee-track">
-            {[...Array(4)].map((_, i) => (
-              <span key={i} className="text-white/30 font-caveat text-2xl sm:text-3xl mx-12 whitespace-nowrap">
-                Больше чем ремонт &nbsp;&#9671;&nbsp; Счастливые истории &nbsp;&#9671;&nbsp; Дом с душой &nbsp;&#9671;&nbsp;
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

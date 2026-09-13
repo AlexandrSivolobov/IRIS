@@ -6,7 +6,7 @@ const advantages = [
   { num: '01', title: 'Внимание к деталям', desc: 'Каждый элемент интерьера продуман до мельчайших подробностей' },
   { num: '02', title: 'Экологичные материалы', desc: 'Используем только безопасные и сертифицированные материалы', hasLeaf: true },
   { num: '03', title: 'Индивидуальный подход', desc: 'Проект создаётся с учётом вашего стиля жизни и привычек' },
-  { num: '04', title: 'Сервис 360°', desc: 'Полный цикл: от идеи до финальной расстановки декора', hasStamp: true },
+  { num: '04', title: 'Сервис 360°', desc: 'У вас не будет проблем с эксплуатацией объекта', hasStamp: true },
   { num: '05', title: 'Современные технологии', desc: '3D-визуализация и VR-туры для максимальной реалистичности' },
   { num: '06', title: 'Гарантия качества', desc: 'Гарантия на все работы и материалы до 5 лет' },
 ];
@@ -23,12 +23,12 @@ export default function PhilosophySection() {
       className="py-24 md:py-32 relative overflow-hidden"
       style={{ backgroundColor: '#21190f' }}
     >
-      {/* Stamp badge */}
+      {/* Stamp badge — desktop only */}
       <motion.div
         initial={{ opacity: 0, scale: 0, rotate: -20 }}
         animate={inView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.5, type: 'spring' }}
-        className="absolute top-8 right-8 md:top-12 md:right-12 w-28 h-28 md:w-36 md:h-36 border-2 border-[#dbc7ad] text-[#dbc7ad] rounded-full flex items-center justify-center z-10"
+        className="hidden md:flex absolute top-12 right-12 w-36 h-36 border-2 border-[#dbc7ad] text-[#dbc7ad] rounded-full items-center justify-center z-10"
       >
         <div className="text-center">
           <span className="text-xs md:text-sm tracking-[0.2em] uppercase font-outfit block">Сервис</span>

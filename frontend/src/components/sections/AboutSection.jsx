@@ -14,8 +14,8 @@ const images = [
   },
   {
     src: '/psb_photos/psb-lobby.jpg',
-    alt: 'Лобби — ПСБ: Черноморский офис',
-    caption: '«ПСБ: Черноморский офис», 2026',
+    alt: 'Лобби — ПСБ: Приморский офис',
+    caption: '«ПСБ: Приморский офис», 2026',
   },
 ];
 
@@ -89,7 +89,7 @@ export default function AboutSection() {
           className="mb-16"
         >
           <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight uppercase leading-tight max-w-3xl" style={{ color: '#dbc7ad' }}>
-            Место, где дом превращается в{' '}
+            Место, где пространство превращается в{' '}
             <span style={{ color: '#dbc7ad' }}>историю</span>
           </h2>
         </motion.div>
@@ -103,15 +103,15 @@ export default function AboutSection() {
             className="lg:col-span-4 font-outfit"
           >
             <p className="text-lg md:text-xl leading-relaxed mb-6" style={{ color: '#dbc7ad' }}>
-              Студия <span className="text-iris-red font-semibold">«Ирис»</span> — это команда
-              архитекторов и дизайнеров, для которых каждый проект — не просто набор квадратных метров,
+              <span className="text-iris-red font-semibold">Ирис дизайн</span> — это команда
+              архитекторов, дизайнеров, инженеров и мастеров, для которых каждый проект — не просто набор квадратных метров,
               а уникальная <span className="font-semibold" style={{ color: '#dbc7ad' }}>история</span>, рассказанная
-              через свет, фактуры и пространство.
+              через свет, фактуры, пространство и ваш комфорт и спокойствие.
             </p>
             <p className="text-lg md:text-xl leading-relaxed" style={{ color: '#dbc7ad' }}>
               Мы верим, что интерьер должен не только выглядеть красиво, но и{' '}
               <span className="font-semibold" style={{ color: '#dbc7ad' }}>чувствоваться</span> правильно.
-              Каждая деталь продумана: от текстуры дерева до направления солнечного света.
+              Каждая деталь продумана: от эргономики до текстур и времени.
             </p>
           </motion.div>
 

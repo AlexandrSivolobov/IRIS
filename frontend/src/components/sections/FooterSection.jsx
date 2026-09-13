@@ -25,7 +25,7 @@ export default function FooterSection() {
               Ирис <span className="font-caveat text-iris-red">Design</span>
             </h3>
             <p className="font-manrope text-iris-text/50 text-sm mt-2">
-              Студия дизайна интерьеров
+              Архитектура, дизайн, реализация
             </p>
           </div>
 
@@ -65,12 +65,12 @@ export default function FooterSection() {
                 Навигация
               </h4>
               <div className="space-y-3">
-                {['О нас', 'Услуги', 'Портфолио', 'Команда', 'FAQ'].map((link) => (
+                {['О нас', 'Компетенции', 'Портфолио', 'Команда', 'Регионы'].map((link) => (
                   <button
                     key={link}
                     data-testid={`footer-nav-${link}`}
                     onClick={() => {
-                      const ids = { 'О нас': 'about', 'Услуги': 'services', 'Портфолио': 'portfolio', 'Команда': 'team', 'FAQ': 'faq' };
+                      const ids = { 'О нас': 'about', 'Компетенции': 'services', 'Портфолио': 'portfolio', 'Команда': 'team', 'Регионы': 'regions' };
                       document.getElementById(ids[link])?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="block font-manrope text-iris-text/70 hover:text-iris-red transition-colors text-left"

@@ -4,10 +4,10 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { id: 'about', label: 'О нас' },
-  { id: 'services', label: 'Услуги' },
+  { id: 'services', label: 'Компетенции' },
   { id: 'portfolio', label: 'Портфолио' },
   { id: 'team', label: 'Команда' },
-  { id: 'faq', label: 'FAQ' },
+  { id: 'regions', label: 'Регионы' },
   { id: 'footer', label: 'Контакты' },
 ];
 
@@ -35,29 +35,7 @@ export default function Header() {
           scrolled ? 'bg-iris-dark/90 backdrop-blur-md py-3' : 'bg-transparent py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Marquee tagline */}
-          <div className="flex-1 overflow-hidden mr-4">
-            <div className="marquee-track whitespace-nowrap">
-              <span className="text-white/70 text-sm font-manrope tracking-widest uppercase mx-8">
-                Мы создаём истории, а не просто пространства
-              </span>
-              <span className="text-iris-light-teal/50 text-sm mx-4">&#9670;</span>
-              <span className="text-white/70 text-sm font-manrope tracking-widest uppercase mx-8">
-                Дизайн интерьеров с душой
-              </span>
-              <span className="text-iris-light-teal/50 text-sm mx-4">&#9670;</span>
-              <span className="text-white/70 text-sm font-manrope tracking-widest uppercase mx-8">
-                Мы создаём истории, а не просто пространства
-              </span>
-              <span className="text-iris-light-teal/50 text-sm mx-4">&#9670;</span>
-              <span className="text-white/70 text-sm font-manrope tracking-widest uppercase mx-8">
-                Дизайн интерьеров с душой
-              </span>
-              <span className="text-iris-light-teal/50 text-sm mx-4">&#9670;</span>
-            </div>
-          </div>
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end">
           {/* Hamburger */}
           <button
             data-testid="hamburger-menu-btn"

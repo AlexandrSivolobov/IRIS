@@ -7,7 +7,7 @@ import PhilosophySection from "@/components/sections/PhilosophySection";
 import PortfolioSection from "@/components/sections/PortfolioSection";
 import TeamSection from "@/components/sections/TeamSection";
 import PartnershipSection from "@/components/sections/PartnershipSection";
-import FAQSection from "@/components/sections/FAQSection";
+import RegionsSection from "@/components/sections/RegionsSection";
 import FooterSection from "@/components/sections/FooterSection";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
       <PortfolioSection />
       <TeamSection />
       <PartnershipSection />
-      <FAQSection />
+      <RegionsSection />
       <FooterSection />
     </div>
   );

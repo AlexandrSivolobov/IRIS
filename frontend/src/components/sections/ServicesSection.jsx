@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowRight, X } from 'lucide-react';
 
@@ -7,9 +7,9 @@ const services = [
     id: 'design',
     title: 'Дизайн-проект',
     specs: [
-      { label: 'Площадь от', value: '30 м²' },
-      { label: 'Сроки', value: '4–8 недель' },
-      { label: 'Стоимость от', value: '3 000 ₽/м²' },
+      { label: 'Площадь от', value: '60 м²' },
+      { label: 'Сроки', value: 'от 4 недель' },
+      { label: 'Стоимость от', value: '5 000 ₽/м²' },
     ],
     description: 'Полный пакет чертежей, 3D-визуализации и спецификаций материалов. Мы продумываем каждую деталь — от расположения розеток до текстуры обоев.',
     details: [
@@ -17,6 +17,9 @@ const services = [
       '3D-визуализация ключевых зон',
       'Рабочие чертежи и спецификация материалов',
       'Подбор мебели, света и декора',
+      'Авторский надзор на всех этапах реализации',
+      'Регулярные выезды на объект и контроль соответствия проекту',
+      'Согласование материалов и оперативное решение нестандартных ситуаций',
     ],
     img: '/photos/living-room.jpg',
   },
@@ -24,50 +27,32 @@ const services = [
     id: 'realization',
     title: 'Реализация',
     specs: [
-      { label: 'Площадь от', value: '50 м²' },
-      { label: 'Сроки', value: '3–6 месяцев' },
-      { label: 'Стоимость от', value: '8 000 ₽/м²' },
+      { label: 'Площадь от', value: '60 м²' },
+      { label: 'Сроки', value: 'от 2 месяцев' },
+      { label: 'Стоимость от', value: '40 000 ₽/м²' },
     ],
-    description: 'Воплощение проекта «под ключ»: от черновой отделки до расстановки мебели. Работаем с проверенными подрядчиками и гарантируем сроки.',
+    description: 'Воплощение проекта «под ключ»: от черновой отделки до расстановки мебели. Проект реализуют штатные инженеры и проверенные мастера.',
     details: [
-      'Организация и координация всех подрядчиков',
-      'Черновая и чистовая отделка',
-      'Закупка и монтаж материалов по проекту',
-      'Финальная расстановка мебели и декора',
+      'Проект реализуют штатные инженеры и проверенные мастера',
+      'Гарантия сроков',
+      'Прозрачность цены',
+      'Строительный контроль',
     ],
     img: '/photos/neo-kitchen.jpg',
-  },
-  {
-    id: 'supervision',
-    title: 'Авторский надзор',
-    specs: [
-      { label: 'Выезды', value: '2–3 в неделю' },
-      { label: 'Сроки', value: 'весь период' },
-      { label: 'Стоимость от', value: '1 500 ₽/м²' },
-    ],
-    description: 'Контроль качества на каждом этапе строительства. Регулярные выезды на объект, согласование материалов и решение нестандартных ситуаций.',
-    details: [
-      'Регулярные выезды на объект',
-      'Контроль соответствия проекту',
-      'Согласование замен материалов и решений',
-      'Оперативное решение нестандартных ситуаций',
-    ],
-    img: '/psb_photos/psb-stairs.jpg',
   },
   {
     id: 'service',
     title: 'Сервис',
     specs: [
       { label: 'Гарантия', value: 'до 5 лет' },
-      { label: 'Реакция', value: '24 часа' },
       { label: 'Стоимость от', value: 'индивид.' },
     ],
-    description: 'Гарантийное и постгарантийное обслуживание объекта. Оперативное решение любых вопросов, техническая поддержка и сезонное обновление интерьера.',
+    description: 'Мы сопровождаем объект, обеспечивая ваш комфорт, экономя ваше время и нервы.',
     details: [
       'Гарантийное обслуживание объекта',
+      'Постгарантийное обслуживание',
       'Техническая поддержка и мелкий ремонт',
-      'Сезонное обновление интерьера',
-      'Консультации по эксплуатации материалов',
+      'Консультации по эксплуатации материалов, оборудования и техники',
     ],
     img: '/psb_photos/psb-lounge.jpg',
   },
@@ -88,7 +73,7 @@ function ServiceDetailModal({ service, onClose }) {
         </button>
         <div className="p-8 md:p-10">
           <h3 className="font-caveat text-3xl md:text-4xl text-iris-text mb-1">{service.title}</h3>
-          <p className="font-outfit text-sm text-iris-teal tracking-wider mb-6">Подробное описание услуги</p>
+          <p className="font-outfit text-sm text-iris-teal tracking-wider mb-6">Подробное описание компетенции</p>
 
           <p className="font-manrope text-base text-iris-text/80 leading-relaxed mb-6">
             {service.description}
@@ -105,7 +90,7 @@ function ServiceDetailModal({ service, onClose }) {
           </div>
 
           <div className="border-t border-dashed border-iris-teal/20 pt-6">
-            <h4 className="font-outfit text-xs uppercase tracking-widest text-iris-teal mb-4">Что входит в услугу</h4>
+            <h4 className="font-outfit text-xs uppercase tracking-widest text-iris-teal mb-4">Что входит в компетенцию</h4>
             <ul className="space-y-3">
               {service.details.map((detail, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -127,31 +112,35 @@ function ServiceDetailModal({ service, onClose }) {
 }
 
 /* ─── Expanding Service Card ─── */
-function ServicePanel({ service, isHovered, onHover, onLeave, onOpenDetail, inView, index }) {
+function ServicePanel({ service, isHovered, onHover, onLeave, onOpenDetail, inView, index, isMobile }) {
+  const expanded = isMobile || isHovered;
+
   return (
     <motion.div
       data-testid={`service-card-${service.id}`}
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      initial={{ opacity: 0 }}
+      onMouseEnter={isMobile ? undefined : onHover}
+      onMouseLeave={isMobile ? undefined : onLeave}
+      initial={{ opacity: 0, y: isMobile ? 20 : 0 }}
       animate={inView ? {
         opacity: 1,
-        flex: isHovered ? 4 : 1,
-      } : { opacity: 0 }}
+        y: 0,
+        flex: isMobile ? undefined : (isHovered ? 4 : 1),
+      } : { opacity: 0, y: isMobile ? 20 : 0 }}
       transition={{
         opacity: { duration: 0.6, delay: index * 0.12 },
         flex: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+        y: { duration: 0.5, delay: index * 0.1 },
       }}
-      className="relative overflow-hidden cursor-pointer group"
+      className={`relative overflow-hidden cursor-pointer group ${isMobile ? 'h-80 w-full' : ''}`}
       style={{ minWidth: 0 }}
     >
       {/* Background image */}
       <img src={service.img} alt={service.title}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-      <div className={`absolute inset-0 transition-colors duration-500 ${isHovered ? 'bg-black/50' : 'bg-black/60'}`} />
+      <div className={`absolute inset-0 transition-colors duration-500 ${expanded ? 'bg-black/50' : 'bg-black/60'}`} />
 
-      {/* Vertical title — shown when collapsed */}
-      <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-400 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
+      {/* Vertical title — desktop collapsed state */}
+      <div className={`hidden md:flex absolute inset-0 items-center justify-center transition-opacity duration-400 ${expanded ? 'opacity-0' : 'opacity-100'}`}>
         <span
           className="font-caveat text-3xl md:text-4xl text-white whitespace-nowrap"
           style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
@@ -160,13 +149,13 @@ function ServicePanel({ service, isHovered, onHover, onLeave, onOpenDetail, inVi
         </span>
       </div>
 
-      {/* Full content — shown when expanded */}
+      {/* Full content */}
       <motion.div
         initial={false}
-        animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
+        animate={{ opacity: expanded ? 1 : 0, y: expanded ? 0 : 20 }}
         transition={{ duration: 0.35 }}
-        className="absolute inset-0 flex flex-col justify-end p-6 md:p-8"
-        style={{ pointerEvents: isHovered ? 'auto' : 'none' }}
+        className={`absolute inset-0 flex flex-col justify-end p-6 md:p-8 ${isMobile ? 'opacity-100 pointer-events-auto' : ''}`}
+        style={{ pointerEvents: expanded ? 'auto' : 'none' }}
       >
         <h3 className="font-caveat text-3xl md:text-4xl text-white mb-4">{service.title}</h3>
 
@@ -201,6 +190,17 @@ export default function ServicesSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [activeService, setActiveService] = useState(null);
   const [hoveredIdx, setHoveredIdx] = useState(null);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   return (
     <>
@@ -224,17 +224,18 @@ export default function ServicesSection() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16 md:mb-20"
           >
-            <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight" style={{ color: '#dbc7ad' }}>Наши услуги</h2>
+            <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight" style={{ color: '#dbc7ad' }}>Компетенции</h2>
             <p className="font-manrope mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'rgba(219,199,173,0.6)' }}>Комплексный подход к созданию пространства вашей мечты</p>
           </motion.div>
 
-          <div className="flex h-[500px] md:h-[560px] gap-3 w-full">
+          <div className="flex flex-col md:flex-row h-auto md:h-[560px] gap-3 w-full">
             {services.map((service, i) => (
               <ServicePanel
                 key={service.id}
                 service={service}
                 index={i}
                 inView={inView}
+                isMobile={isMobile}
                 isHovered={hoveredIdx === i}
                 onHover={() => setHoveredIdx(i)}
                 onLeave={() => setHoveredIdx(null)}
