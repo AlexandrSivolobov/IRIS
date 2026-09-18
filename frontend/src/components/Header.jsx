@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import useTelegramBrowser from '@/hooks/useTelegramBrowser';
 
 const navLinks = [
   { id: 'about', label: 'О нас' },
@@ -14,6 +15,8 @@ const navLinks = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isTelegram = useTelegramBrowser();
+  const showScrollBar = scrolled && !isTelegram;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -32,15 +35,16 @@ export default function Header() {
       <header
         data-testid="main-header"
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled ? 'bg-iris-dark/90 backdrop-blur-md py-3' : 'bg-transparent py-5'
+          showScrollBar ? 'bg-iris-dark/90 backdrop-blur-md py-3' : 'bg-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end">
-          {/* Hamburger */}
           <button
             data-testid="hamburger-menu-btn"
             onClick={() => setIsOpen(!isOpen)}
-            className="relative z-50 w-10 h-10 flex items-center justify-center text-white hover:text-iris-light-teal transition-colors"
+            className={`relative z-50 w-10 h-10 flex items-center justify-center text-white hover:text-iris-light-teal transition-colors ${
+              isTelegram ? 'drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]' : ''
+            }`}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
