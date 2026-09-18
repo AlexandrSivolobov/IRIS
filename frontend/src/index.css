@@ -53,6 +53,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: -webkit-fill-available;
 }
 
 body {
@@ -62,6 +63,10 @@ body {
   color: var(--iris-text);
   background: var(--iris-white);
   overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 h1, h2, h3, h4, h5, h6 {

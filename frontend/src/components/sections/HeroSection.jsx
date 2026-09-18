@@ -33,7 +33,7 @@ export default function HeroSection() {
   }, [nextSlide]);
 
   return (
-    <section data-testid="hero-section" id="hero" className="relative w-full h-screen overflow-hidden">
+    <section data-testid="hero-section" id="hero" className="relative w-full min-h-[100svh] h-[100svh] overflow-hidden">
       {/* Slideshow Background */}
       <AnimatePresence mode="wait">
         <motion.div

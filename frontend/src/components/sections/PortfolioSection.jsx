@@ -289,7 +289,7 @@ function PortfolioItem({ project, onOpen }) {
     <motion.div
       ref={ref}
       data-testid={`portfolio-item-${project.id}`}
-      className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden mb-4"
+      className="relative w-full h-[60svh] md:h-[80vh] overflow-hidden mb-4"
     >
       <motion.div style={{ y }} className="absolute inset-0 parallax-img">
         <img src={project.img} alt={project.title} className="w-full h-[120%] object-cover" />
