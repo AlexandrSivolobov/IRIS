@@ -77,7 +77,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.8 }}
           className="text-white/80 font-manrope text-base sm:text-lg mt-8 tracking-widest uppercase max-w-lg text-center"
         >
-          Архитектура, дизайн, реализация
+          Ваше доверие – наша ответственность
         </motion.p>
 
         <motion.button

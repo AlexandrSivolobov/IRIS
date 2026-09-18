@@ -26,7 +26,7 @@ export default function FooterSection() {
                 Ирис <span className="font-caveat text-iris-red">Design</span>
               </h3>
               <p className="font-manrope text-iris-text/50 text-xs mt-1">
-                Архитектура, дизайн, реализация
+                Ваше доверие – наша ответственность
               </p>
             </div>
 
