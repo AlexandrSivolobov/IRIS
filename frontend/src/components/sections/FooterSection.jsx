@@ -79,10 +79,7 @@ export default function FooterSection() {
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-8 pt-5 border-t border-iris-teal/10 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="font-manrope text-iris-text/40 text-xs">
-              &copy; 2024 Ирис Design. Все права защищены.
-            </p>
+          <div className="mt-8 pt-5 border-t border-iris-teal/10 flex items-center">
             <p className="font-caveat text-iris-teal/50 text-base">
               Создаём истории с душой
             </p>
