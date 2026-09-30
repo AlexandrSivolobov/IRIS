@@ -9,6 +9,7 @@ const regions = [
   'Краснодар',
   'Ярославль',
   'Сочи',
+  'Волгоград',
 ];
 
 export default function RegionsSection() {
