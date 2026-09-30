@@ -15,7 +15,7 @@ const images = [
   {
     src: '/psb_photos/psb-lobby.jpg',
     alt: 'Лобби — ПСБ: Приморский офис',
-    caption: '«ПСБ: Приморский офис», 2026',
+    caption: '«Приморский офис», 2026',
   },
 ];
 
